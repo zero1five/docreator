@@ -21,5 +21,8 @@ const createServer = () => {
     if (err) {
       return console.log(err)
     }
+    console.log()
+    console.log(`Docreator is running on port 3000`)
+    console.log()
   })
 }
