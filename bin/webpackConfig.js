@@ -36,7 +36,12 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader
           },
           'css-loader',
-          require.resolve('less-loader')
+          {
+            loader: require.resolve('less-loader'),
+            options: {
+              javascriptEnabled: true
+            }
+          }
         ]
       }
     ]
@@ -60,7 +65,10 @@ module.exports = {
                 require.resolve('@babel/plugin-proposal-class-properties'),
                 { loose: true }
               ],
-              ['import', { libraryName: 'antd', style: true }]
+              [
+                require.resolve('babel-plugin-import'),
+                { libraryName: 'antd', style: true }
+              ]
             ]
           }
         }

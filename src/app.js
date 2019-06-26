@@ -1,86 +1,93 @@
 import React, { Component } from 'react'
 import { Layout, Menu, Button, Icon } from 'antd'
 import { withRouter, Router, Link } from 'react-router-dom'
+import SiderBody from './sider'
 
 const { Content, Footer, Header, Sider } = Layout
 const { SubMenu } = Menu
 
+const Border = '1px solid rgb(232, 232, 232)'
+const SiderWithRouter = withRouter(SiderBody)
+
 @withRouter
 export default class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-    console.log(creatorConfig)
+  state = {
+    SiderWidth: 280,
+    HeaderHeight: 54,
+    screenMode: 'computer',
+    open: false,
+    footerMsg: '© 2019 Made by zero1five',
+    ...creatorConfig
+  }
+
+  renderSider = () => {
+    return (
+      <Sider
+        collapsedWidth={0}
+        collapsed={this.state.collapsed}
+        style={{
+          paddingTop: this.state.HeaderHeight,
+          height: '100vh',
+          position: 'fixed',
+          left: 0,
+          background: 'white',
+          borderRight: Border,
+          overflow: 'auto'
+        }}
+        width={this.state.SiderWidth}
+      >
+        <SiderWithRouter {...this.state} />
+      </Sider>
+    )
+  }
+
+  renderFooter = () => {
+    return <p>{this.state.footerMsg}</p>
   }
 
   render() {
+    const { screenMode } = this.state
     return (
       <Layout>
-        <Header></Header>
-        <Layout>
-          <Sider width={200} style={{ background: '#fff' }}>
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={['1']}
-              defaultOpenKeys={['sub1']}
-              style={{ height: '100%', borderRight: 0 }}
-            >
-              <SubMenu
-                key="sub1"
-                title={
-                  <span>
-                    <Icon type="user" />
-                    subnav 1
-                  </span>
-                }
-              >
-                <Menu.Item key="1">option1</Menu.Item>
-                <Menu.Item key="2">option2</Menu.Item>
-                <Menu.Item key="3">option3</Menu.Item>
-                <Menu.Item key="4">option4</Menu.Item>
-              </SubMenu>
-              <SubMenu
-                key="sub2"
-                title={
-                  <span>
-                    <Icon type="laptop" />
-                    subnav 2
-                  </span>
-                }
-              >
-                <Menu.Item key="5">option5</Menu.Item>
-                <Menu.Item key="6">option6</Menu.Item>
-                <Menu.Item key="7">option7</Menu.Item>
-                <Menu.Item key="8">option8</Menu.Item>
-              </SubMenu>
-              <SubMenu
-                key="sub3"
-                title={
-                  <span>
-                    <Icon type="notification" />
-                    subnav 3
-                  </span>
-                }
-              >
-                <Menu.Item key="9">option9</Menu.Item>
-                <Menu.Item key="10">option10</Menu.Item>
-                <Menu.Item key="11">option11</Menu.Item>
-                <Menu.Item key="12">option12</Menu.Item>
-              </SubMenu>
-            </Menu>
-          </Sider>
+        <Header
+          style={{
+            padding: 25,
+            background: '#fff',
+            width: '100%',
+            top: 0,
+            zIndex: 3,
+            position: 'fixed',
+            borderBottom: Border,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            height: this.state.HeaderHeight
+          }}
+        ></Header>
+        {this.renderSider()}
+        <Layout
+          style={{
+            marginTop: this.state.HeaderHeight,
+            marginLeft:
+              this.props.location.pathname === '/' && screenMode === 'mobile'
+                ? 0
+                : this.state.SiderWidth
+          }}
+        >
           <Content
             style={{
-              background: '#fff',
-              padding: 24,
-              margin: 0,
-              minHeight: 280
+              overflow: 'initial',
+              display: 'flex',
+              justifyContent: 'center',
+              background: '#fff'
             }}
           >
             Content
           </Content>
+          <Footer style={{ textAlign: 'center', background: '#fff' }}>
+            {this.renderFooter()}
+          </Footer>
         </Layout>
-        <Footer></Footer>
       </Layout>
     )
   }
