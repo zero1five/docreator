@@ -5,8 +5,8 @@ import { Link, Redirect, withRouter } from 'react-router-dom'
 import './index.less'
 
 @withRouter
-export default class Sider extends PureComponent {
+export default class SiderBody extends PureComponent {
   render() {
-    return <div>1</div>
+    return <div></div>
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Layout, Menu, Button, Icon } from 'antd'
 import { withRouter, Router, Link } from 'react-router-dom'
-import SiderBody from './sider'
+import SiderBody from './components/sider'
 
 const { Content, Footer, Header, Sider } = Layout
 const { SubMenu } = Menu

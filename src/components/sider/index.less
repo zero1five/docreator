@@ -1,0 +1,35 @@
+@color: rgb(97, 218, 251);
+.rs-link {
+    color: rgba(0, 0, 0, 0.85);
+    display: inline-block;
+    width: 100%;
+    &:hover {
+        color: @color;
+    }
+}
+
+.dir-menu-link {
+    color: rgba(0, 0, 0, 0.85);
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+    &:focus {
+        text-decoration: none;
+    }
+}
+
+.dir-menu-link-color {
+    &:focus {
+        text-decoration: none;
+    }
+}
+
+.ant-menu-submenu-arrow {
+    display: none;
+}
+
+@media (min-width: 769px) {
+    .ant-layout-sider {
+        width: 0;
+    }
+}
