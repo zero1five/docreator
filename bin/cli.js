@@ -12,8 +12,19 @@ const run = async mode => {
     )
   })
 
+  const appDirectory = await fs.realpath(process.cwd())
+  const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
+  const configPath = resolveApp('doc.config.js')
+
+  let config = {}
+  fs.stat(configPath)
+    .then(() => {
+      config = require(configPath)
+    })
+    .catch(() => {})
+
   const cmd = require(cmdPath)
-  cmd(sourcePath, options)
+  cmd(sourcePath, options, config)
 }
 
 run(mode)
