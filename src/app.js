@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { Layout, Menu, Button, Icon } from 'antd'
 import { withRouter, Router, Link } from 'react-router-dom'
-import SiderBody from './components/sider'
+import { initStore } from './store'
+
+import SiderBody from './components/Sider'
+
+initStore({ ...creatorConfig })
 
 const { Content, Footer, Header, Sider } = Layout
-const { SubMenu } = Menu
 
 const Border = '1px solid rgb(232, 232, 232)'
 const SiderWithRouter = withRouter(SiderBody)
@@ -81,9 +84,7 @@ export default class App extends Component {
               justifyContent: 'center',
               background: '#fff'
             }}
-          >
-            Content
-          </Content>
+          />
           <Footer style={{ textAlign: 'center', background: '#fff' }}>
             {this.renderFooter()}
           </Footer>

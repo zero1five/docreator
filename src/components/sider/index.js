@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Menu } from 'antd'
 import { Link, Redirect, withRouter } from 'react-router-dom'
+import { connect } from '../../store'
 
 import './index.less'
 
@@ -17,6 +18,7 @@ const baseMenuItem = ({ name, path, children }) => {
 }
 
 @withRouter
+@connect()
 export default class SiderBody extends PureComponent {
   state = {
     openKeys: []
