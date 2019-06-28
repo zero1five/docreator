@@ -12,7 +12,7 @@ const SiderWithRouter = withRouter(SiderBody)
 @withRouter
 export default class App extends Component {
   state = {
-    SiderWidth: 280,
+    SiderWidth: 256,
     HeaderHeight: 54,
     screenMode: 'computer',
     open: false,
