@@ -1,7 +1,13 @@
 import React from 'react'
+import { connect } from '../../miniDva'
 
 const RluyComponent = props => {
-  return <div>{props.count}</div>
+  return (
+    <div>
+      {props.count}
+      It's Ok?
+    </div>
+  )
 }
 
 const mapState = state => {

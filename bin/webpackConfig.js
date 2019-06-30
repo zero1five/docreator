@@ -24,6 +24,14 @@ module.exports = {
     strictExportPresence: true,
     rules: [
       {
+        test: /dvaConfig/,
+        use: [
+          {
+            loader: require.resolve('./DvaLoader.js')
+          }
+        ]
+      },
+      {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         use: require.resolve('happypack/loader'),
         include: paths.appSrc,

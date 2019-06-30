@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
-import { Provider } from 'react-redux'
+import { Provider, connect as _connect } from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
 import {
   fork,
@@ -27,7 +27,7 @@ class Dva {
   constructor() {
     this.isDebug = false
     this.routingComponent = {}
-    this.sagaMiddleware = createSagaMiddleware(this.rootSaga)
+    this.sagaMiddleware = {}
     this.appReducers = {}
     this.actionStategy = []
     this.effects = {}
@@ -39,6 +39,10 @@ class Dva {
 
   onError(fn) {
     this.errorFn = fn
+  }
+
+  init() {
+    this.sagaMiddleware = createSagaMiddleware(this.rootSaga)
   }
 
   *rootWatcher() {
@@ -129,4 +133,5 @@ class Dva {
   }
 }
 
+export const connect = _connect
 export default new Dva()

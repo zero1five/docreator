@@ -1,4 +1,4 @@
-import App from './miniDva'
+import { App } from './dvaConfig'
 import router from './router'
 import { initStore } from './store'
 
