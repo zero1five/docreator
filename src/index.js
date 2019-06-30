@@ -1,17 +1,17 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { BrowserRouter as Router } from 'react-router-dom'
+import App from './miniDva'
+import router from './router'
+import { initStore } from './store'
 
-import App from './app'
-import './index.less'
+initStore({ ...creatorConfig })
+
+App.router(router)
+
+App.onError(e => {
+  console.log('Application Error:', e)
+})
+
+App.run(document.getElementById('root'), true)
 
 if (module.hot) {
   module.hot.accept()
 }
-
-ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
-  document.getElementById('root')
-)

@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
 import { Layout, Menu, Button, Icon } from 'antd'
-import { withRouter, Router, Link } from 'react-router-dom'
-import { initStore } from './store'
+import { withRouter } from 'react-router-dom'
 
-import SiderBody from './components/Sider'
-
-initStore({ ...creatorConfig })
+import SiderBody from '../Sider'
 
 const { Content, Footer, Header, Sider } = Layout
 
 const Border = '1px solid rgb(232, 232, 232)'
-const SiderWithRouter = withRouter(SiderBody)
 
 @withRouter
 export default class App extends Component {
@@ -39,7 +35,7 @@ export default class App extends Component {
         }}
         width={this.state.SiderWidth}
       >
-        <SiderWithRouter {...this.state} />
+        <SiderBody {...this.state} />
       </Sider>
     )
   }
@@ -84,7 +80,9 @@ export default class App extends Component {
               justifyContent: 'center',
               background: '#fff'
             }}
-          />
+          >
+            {this.props.children}
+          </Content>
           <Footer style={{ textAlign: 'center', background: '#fff' }}>
             {this.renderFooter()}
           </Footer>
