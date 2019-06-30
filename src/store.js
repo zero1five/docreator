@@ -4,7 +4,7 @@ import equal from 'fast-deep-equal'
 
 // new Store | dispatch | @connect
 
-const noop = store => store
+const identity = store => store
 
 let store = {}
 
@@ -35,7 +35,7 @@ const { listen, unListen, update } = createSubscribe()
 
 export const initStore = _store => (store = _store)
 
-export const connect = (selector = noop) => WrappedComponent => {
+export const connect = (selector = identity) => WrappedComponent => {
   if (!typeof WrappedComponent === 'function') {
     console.error(
       `Error: Current used wrappedComponent is not a function, or maybe error calling connect.`
