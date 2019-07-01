@@ -1,8 +1,5 @@
 import { App } from './dvaConfig'
 import router from './router'
-import { initStore } from './store'
-
-initStore({ ...creatorConfig })
 
 App.router(router)
 

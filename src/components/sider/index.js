@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Menu } from 'antd'
-import { connect } from '../../store'
+import { connect } from '../../miniDva'
 
 import './index.less'
 
