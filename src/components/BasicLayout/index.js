@@ -46,7 +46,6 @@ export default class App extends PureComponent {
 
   render() {
     const { screenMode } = this.state
-    console.log(this.props.children)
     return (
       <Layout>
         <Header
