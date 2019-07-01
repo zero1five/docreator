@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Layout, Menu, Button, Icon } from 'antd'
 import { withRouter } from 'react-router-dom'
 
@@ -9,7 +9,7 @@ const { Content, Footer, Header, Sider } = Layout
 const Border = '1px solid rgb(232, 232, 232)'
 
 @withRouter
-export default class App extends Component {
+export default class App extends PureComponent {
   state = {
     SiderWidth: 256,
     HeaderHeight: 54,
@@ -46,6 +46,7 @@ export default class App extends Component {
 
   render() {
     const { screenMode } = this.state
+    console.log(this.props.children)
     return (
       <Layout>
         <Header

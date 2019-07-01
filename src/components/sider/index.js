@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Menu } from 'antd'
+import { Link } from 'react-router-dom'
 import { connect } from '../../miniDva'
 
 import './index.less'
@@ -12,7 +13,11 @@ const baseMenuItem = ({ name, path, children }) => {
       </Menu.SubMenu>
     )
   } else {
-    return <Menu.Item key={path}>{name}</Menu.Item>
+    return (
+      <Menu.Item key={path}>
+        <Link to={name}>{name}</Link>
+      </Menu.Item>
+    )
   }
 }
 

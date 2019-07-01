@@ -4,8 +4,8 @@ import { connect } from '../../miniDva'
 const RluyComponent = props => {
   return (
     <div>
-      {props.count} <hr />
-      It's Ok?
+      {props.count + 5} <hr />
+      It's not Ok
     </div>
   )
 }
