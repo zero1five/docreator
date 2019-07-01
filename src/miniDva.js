@@ -95,9 +95,10 @@ class Dva {
     }
 
     Object.keys(model.effects).forEach(key => {
-      this.actionStategy.push(key)
-      this.effects[key] = model.effects[key]
-      this.moduleFilename[key] = filename
+      const partialKey = namespace + '/' + key
+      this.actionStategy.push(partialKey)
+      this.effects[partialKey] = model.effects[key]
+      this.moduleFilename[partialKey] = filename
     })
 
     const modelState = model.state || {}

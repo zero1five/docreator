@@ -7,9 +7,5 @@ export default {
       return { ...state, count: payload }
     }
   },
-  effects: {
-    *Increase({ put }, { payload }) {
-      yield put({ type: 'mapCount', payload })
-    }
-  }
+  effects: {}
 }

@@ -7,6 +7,7 @@ export default component => {
     <Router>
       <App>
         <Route path="/" exact component={component['home']} />
+        <Route path="/auto" exact component={component['auto']} />
       </App>
     </Router>
   )

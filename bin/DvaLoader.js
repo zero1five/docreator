@@ -6,13 +6,12 @@ const produceNamespace = filename => {
 }
 
 const wrapperModel = (source, key, filename) => {
-  return `Dva.model(require("${source + filename}"),"${filename}");\n`
+  return `Dva.model(require("${source}"),"${filename}");\n`
 }
 
 const wrapperLayout = (source, key, filename) => {
   const namespace = produceNamespace(filename)
-  return `Dva.routingComponent["${namespace}"]=require("${source +
-    filename}").default;\n`
+  return `Dva.routingComponent["${namespace}"]=require("${source}").default;\n`
 }
 
 const CodeMerge = (path, wrapper) => {
@@ -20,7 +19,7 @@ const CodeMerge = (path, wrapper) => {
   const dirs = fs.readdirSync(path)
 
   if (dirs.length === 1) {
-    src = wrapper(path, dirs[0], dirs[0])
+    src = wrapper(path + dirs[0], dirs[0], dirs[0])
     return src
   }
 
@@ -53,8 +52,7 @@ module.exports = function(source) {
 
     console.log(chalk.green('adding pages...'))
     console.log(chalk.green('adding module...'))
-    console.log(source + '\n\n' + src + src2)
-    return source + '\n\n' + src + src2
+    return source + '\n\n' + src + '\n' + src2
   } catch (e) {
     console.log(chalk.red('please create a module folder in `{your app}/src/`'))
     throw e
