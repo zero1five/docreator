@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import { Layout, Menu, Button, Icon } from 'antd'
 import { withRouter } from 'react-router-dom'
 
+import creatorConfig from '../../config'
+
 import SiderBody from '../Sider'
 
 const { Content, Footer, Header, Sider } = Layout
