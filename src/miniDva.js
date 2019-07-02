@@ -119,7 +119,9 @@ class Dva {
         : RouterModel
   }
 
-  run(DOMNode, isDebug) {
+  run(DOMNode, options) {
+    const { isDebug } = options
+
     if (isDebug === true) this.isDebug = true
     const store = createStore(
       combineReducers(this.appReducers),
