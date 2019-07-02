@@ -1,4 +1,4 @@
-const { resolve, join } = require('path')
+const { resolve, join, relative } = require('path')
 const { chinese2pinyin } = require('./chinesepinyin')
 const { extractHeader } = require('./extractHeader')
 
@@ -26,11 +26,14 @@ const modulesMaker = (path, files) => {
         }
       }
 
+      const absolutePath = join(path, f)
+      const relativePath = absolutePath.slice(absolutePath.indexOf('docs') - 1)
+
       let removedf = f.replace(/^\d+./, '').replace('.md', '')
       return {
         route: chinese2pinyin(removedf).replace(' ', ''),
         name: removedf,
-        path: resolve(join(path, f)),
+        path: relativePath,
         children: void 666,
         type: 'file',
         header: extractHeader(resolve(join(path, f)))

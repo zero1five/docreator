@@ -43,7 +43,10 @@
     "react-dev-utils": "^9.0.1",
     "react-dom": "^16.8.6",
     "react-hot-loader": "^4.11.1",
+    "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
+    "redux": "^4.0.1",
+    "redux-saga": "^1.0.4",
     "showdown": "^1.9.0",
     "webpack": "^4.35.0",
     "webpack-dev-server": "^3.7.2"

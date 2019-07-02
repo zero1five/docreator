@@ -19,6 +19,12 @@ const resolveFilePath = (router, pathname) => {
   return fp
 }
 
+const readFile = path => () =>
+  fetch(path, {
+    method: 'GET',
+    mode: 'cors'
+  }).then(res => res.text())
+
 export default {
   state: {
     cache: new LRU({ max: 20 }),
@@ -32,7 +38,8 @@ export default {
   effects: {
     *fetchMarkdown({ call, put }, { payload }) {
       const fp = resolveFilePath(creatorConfig.navi, payload.replace('/', ''))
-      console.log(fp)
+      const res = yield call(readFile('http://localhost:3001' + fp))
+      console.log(res)
     }
   }
 }
