@@ -1,4 +1,6 @@
 import LRU from 'lru-cache'
+import marked from 'marked'
+
 import creatorConfig from '../config'
 
 const resolveFilePath = (router, pathname) => {
@@ -61,7 +63,7 @@ export default {
         payload: {
           title: payload,
           headings: null,
-          html: res
+          html: marked(res)
         }
       })
     }
