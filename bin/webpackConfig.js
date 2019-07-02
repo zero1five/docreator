@@ -18,6 +18,9 @@ module.exports = {
     filename: '[name].bundle.js',
     publicPath: '/'
   },
+  node: {
+    fs: 'empty'
+  },
   mode: 'development',
   devtool: 'source-map',
   module: {

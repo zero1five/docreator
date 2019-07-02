@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import MDX from '@mdx-js/runtime'
 import { connect } from '../../miniDva'
 
 @connect(state => ({ ...state.basePage }))
@@ -27,7 +28,8 @@ export default class BasePage extends PureComponent {
     const {
       page: { html }
     } = this.props
+    const components = {}
 
-    return <div dangerouslySetInnerHTML={{ __html: html }}></div>
+    return <MDX components={components}>{html}</MDX>
   }
 }
