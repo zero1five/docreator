@@ -18,7 +18,13 @@ class MdConvertor {
         {
           type: 'listener',
           listeners: {
-            'headers.before': function(event, text, converter, options, globals) {
+            'headers.before': function(
+              event,
+              text,
+              converter,
+              options,
+              globals
+            ) {
               text = text.replace(rgx, function(wm, hLevel, hText, hCustomId) {
                 // find how many # there are at the beginning of the header
                 // these will define the header level
@@ -28,7 +34,16 @@ class MdConvertor {
                 hText = showdown.subParser('spanGamut')(hText, options, globals)
                 hText = trim(hText)
                 // create the appropriate HTML
-                var header = '<h' + hLevel + ' id="' + hText + '">' + hText + '</h' + hLevel + '>'
+                var header =
+                  '<h' +
+                  hLevel +
+                  ' id="' +
+                  hText +
+                  '">' +
+                  hText +
+                  '</h' +
+                  hLevel +
+                  '>'
                 if (hLevel <= 2) {
                   that.header.push({
                     hLevel: hLevel,
@@ -36,7 +51,11 @@ class MdConvertor {
                   })
                 }
                 // hash block to prevent any further modification
-                const res = showdown.subParser('hashBlock')(header, options, globals)
+                const res = showdown.subParser('hashBlock')(
+                  header,
+                  options,
+                  globals
+                )
                 return res
               })
               // return the changed text
