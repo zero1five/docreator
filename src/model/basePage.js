@@ -63,7 +63,7 @@ export default {
         payload: {
           title: payload,
           headings: null,
-          html: marked(res)
+          html: res
         }
       })
     }
