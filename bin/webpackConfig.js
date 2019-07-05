@@ -35,6 +35,10 @@ module.exports = {
         ]
       },
       {
+        test: /globalConfig/,
+        use: require.resolve('./globalEnvLoader.js')
+      },
+      {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         use: require.resolve('happypack/loader'),
         include: paths.appSrc,

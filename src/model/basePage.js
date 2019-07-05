@@ -1,7 +1,7 @@
 import LRU from 'lru-cache'
 import marked from 'marked'
 
-import creatorConfig from '../config'
+import config from '../globalConfig'
 
 const resolveFilePath = (router, pathname) => {
   let fp = ''
@@ -55,7 +55,7 @@ export default {
         return
       }
 
-      const fp = resolveFilePath(creatorConfig.navi, payload.replace('/', ''))
+      const fp = resolveFilePath(config.navi, payload.replace('/', ''))
       const res = yield call(readFile('http://localhost:3001' + fp))
 
       yield put({

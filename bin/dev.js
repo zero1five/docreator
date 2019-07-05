@@ -3,8 +3,6 @@ const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 const koa = require('koa')
 
-const { content, mimes } = require('./utils')
-
 const HOST = process.env.HOST || '0.0.0.0'
 
 module.exports = (sourcePath, options, config) => {
@@ -18,13 +16,6 @@ module.exports = (sourcePath, options, config) => {
 const createServer = config => {
   const webpackConfig = require('./webpackConfig')
   const serverConfig = require('./webpackServerConfig')
-
-  webpackConfig.plugins = [
-    ...webpackConfig.plugins,
-    new webpack.DefinePlugin({
-      creatorConfig: JSON.stringify(config)
-    })
-  ]
 
   const compiler = webpack(webpackConfig)
   const devServer = new WebpackDevServer(compiler, serverConfig)

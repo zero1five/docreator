@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { Layout, Menu, Button, Icon } from 'antd'
 import { withRouter } from 'react-router-dom'
 
-import creatorConfig from '../../config'
+import config from '../../globalConfig'
 
 import SiderBody from '../Sider'
 
@@ -18,7 +18,7 @@ export default class App extends PureComponent {
     screenMode: 'computer',
     open: false,
     footerMsg: '© 2019 Made by zero1five',
-    ...creatorConfig
+    ...config
   }
 
   renderSider = () => {
