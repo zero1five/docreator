@@ -1,19 +1,29 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
+import MDX from '@mdx-js/runtime'
 import { connect } from '../../miniDva'
+import config from '../../globalConfig'
 
-const RluyComponent = props => {
-  return (
-    <div>
-      {props.count} <hr />
-      It's Ok?
-    </div>
-  )
-}
+@connect(state => ({ ...state.markdown }))
+export default class Home extends PureComponent {
+  componentWillMount() {
+    this.fetchHomePage()
+  }
 
-const mapState = state => {
-  return {
-    ...state.home
+  fetchHomePage() {
+    const { dispatch } = this.props
+
+    dispatch({
+      type: 'markdown/fetchMarkdown',
+      payload: config.homePage
+    })
+  }
+
+  render() {
+    const {
+      page: { html }
+    } = this.props
+    const components = {}
+
+    return <MDX components={components}>{html}</MDX>
   }
 }
-
-export default connect(mapState)(RluyComponent)

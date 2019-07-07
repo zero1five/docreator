@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import MDX from '@mdx-js/runtime'
 import { connect } from '../../miniDva'
 
-@connect(state => ({ ...state.basePage }))
+@connect(state => ({ ...state.markdown }))
 export default class BasePage extends PureComponent {
   componentWillMount() {
     this.fetchMarkdown(this.props.location)
@@ -19,7 +19,7 @@ export default class BasePage extends PureComponent {
     const { pathname } = location
 
     dispatch({
-      type: 'basePage/fetchMarkdown',
+      type: 'markdown/fetchMarkdown',
       payload: pathname
     })
   }

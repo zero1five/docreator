@@ -35,7 +35,7 @@ const createStaticServer = config => {
 
   app.use(async ctx => {
     ctx.set('Access-Control-Allow-Origin', '*')
-    let content = await render(ctx.request.url)
+    let content = await hydrate(ctx.request.url)
     ctx.body = content
   })
 
@@ -47,7 +47,7 @@ const createStaticServer = config => {
   console.log()
 }
 
-function render(page) {
+function hydrate(page) {
   return new Promise((resolve, reject) => {
     let viewUrl = `.${page}`
     fs.readFile(viewUrl, 'binary', (err, data) => {
