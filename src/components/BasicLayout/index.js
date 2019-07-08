@@ -1,10 +1,15 @@
 import React, { PureComponent } from 'react'
-import { Layout, Menu, Button, Icon } from 'antd'
+import { Layout, Button, Icon } from 'antd'
+import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 
 import config from '../../globalConfig'
 
 import SiderBody from '../Sider'
+import HeaderBody from '../Header'
+
+const HeaderWithRouter = withRouter(HeaderBody)
+const SiderWithRouter = withRouter(SiderBody)
 
 const { Content, Footer, Header, Sider } = Layout
 
@@ -37,13 +42,34 @@ export default class App extends PureComponent {
         }}
         width={this.state.SiderWidth}
       >
-        <SiderBody {...this.state} />
+        <SiderWithRouter {...this.state} />
       </Sider>
     )
   }
 
   renderFooter = () => {
     return <p>{this.state.footerMsg}</p>
+  }
+
+  renderNavBar = () => {
+    const { screenMode, open, siteTitle } = this.state
+    return (
+      <>
+        {screenMode === 'mobile' && this.props.location.pathname !== '/' ? (
+          <Button type="primary" ghost={true} onClick={this.openshit}>
+            <Icon type={open ? 'menu-unfold' : 'menu-fold'} />
+          </Button>
+        ) : null}
+        <div className="logo">
+          <Link to={'/'}>{siteTitle}</Link>
+        </div>
+        {screenMode === 'mobile' ? null : <HeaderWithRouter {...this.state} />}
+      </>
+    )
+  }
+
+  openshit = () => {
+    this.setState({ open: !this.state.open })
   }
 
   render() {
@@ -64,7 +90,9 @@ export default class App extends PureComponent {
             justifyContent: 'space-between',
             height: this.state.HeaderHeight
           }}
-        ></Header>
+        >
+          {this.renderNavBar()}
+        </Header>
         {this.renderSider()}
         <Layout
           style={{
