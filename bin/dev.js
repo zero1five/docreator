@@ -1,6 +1,8 @@
 const fs = require('fs')
+const paths = require('./paths')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const koa = require('koa')
 
 const HOST = process.env.HOST || '0.0.0.0'
@@ -16,6 +18,15 @@ module.exports = (sourcePath, options, config) => {
 const createServer = config => {
   const webpackConfig = require('./webpackConfig')
   const serverConfig = require('./webpackServerConfig')
+
+  webpackConfig.plugins.push(
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: paths.appHtml,
+      title: config.siteTitle,
+      favicon: config.favicon
+    })
+  )
 
   const compiler = webpack(webpackConfig)
   const devServer = new WebpackDevServer(compiler, serverConfig)

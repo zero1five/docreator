@@ -1,5 +1,6 @@
 module.exports = {
   target: '',
+  favicon: '',
   siteTitle: 'Docreator',
   homePage: './README.md',
   navbar: [

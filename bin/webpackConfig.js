@@ -1,8 +1,6 @@
 const os = require('os')
-const path = require('path')
 const webpack = require('webpack')
 const HappyPack = require('happypack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const paths = require('./paths')
 
@@ -90,10 +88,6 @@ module.exports = {
       ],
       threadPool: happyThreadPool,
       verbose: false
-    }),
-    new HtmlWebpackPlugin({
-      inject: true,
-      template: paths.appHtml
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
