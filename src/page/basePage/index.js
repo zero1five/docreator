@@ -1,16 +1,19 @@
 import React, { PureComponent } from 'react'
 import MDX from '@mdx-js/runtime'
 import { connect } from '../../miniDva'
+import config from '../../globalConfig'
 
 @connect(state => ({ ...state.markdown }))
 export default class BasePage extends PureComponent {
   componentWillMount() {
     this.fetchMarkdown(this.props.location)
+    this.setBasePageTitle(this.props.location)
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.pathname !== this.props.location.pathname) {
       this.fetchMarkdown(nextProps.location)
+      this.setBasePageTitle(nextProps.location)
     }
   }
 
@@ -22,6 +25,13 @@ export default class BasePage extends PureComponent {
       type: 'markdown/fetchMarkdown',
       payload: pathname
     })
+  }
+
+  setBasePageTitle(location) {
+    const { pathname } = location
+    document.title = `${pathname.slice(1)} | ${
+      config.siteTitle ? config.siteTitle : ''
+    }`
   }
 
   render() {
