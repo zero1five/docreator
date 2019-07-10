@@ -3,6 +3,8 @@ const paths = require('./paths')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const openBrowser = require('react-dev-utils/openBrowser')
+const { prepareUrls } = require('react-dev-utils/WebpackDevServerUtils')
 const koa = require('koa')
 
 const HOST = process.env.HOST || '0.0.0.0'
@@ -38,6 +40,10 @@ const createServer = config => {
     console.log()
     console.log(`Docreator is running on port 3000`)
     console.log()
+
+    const protocol = process.env.HTTPS === 'true' ? 'https' : 'http'
+    const urls = prepareUrls(protocol, HOST, 3000)
+    openBrowser(urls.localUrlForBrowser)
   })
 }
 
