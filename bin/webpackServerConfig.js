@@ -1,7 +1,7 @@
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware')
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware')
 const paths = require('./paths')
-const config = require('./webpackConfig')
+const config = require('./webpack.config.dev')
 
 module.exports = {
   disableHostCheck: true,
