@@ -9,7 +9,7 @@ const resolveFilePath = (router, pathname) => {
     for (let i = 0, l = router.length; i < l; i++) {
       const { name, path, children } = router[i]
       if (children) {
-        recursive(children, pathname, fp)
+        recursive(children, pathname)
       } else if (pathname === name) {
         return (fp = path)
       }
