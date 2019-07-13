@@ -22,7 +22,7 @@ export default class App extends Component {
     HeaderHeight: 54,
     screenMode: 'computer',
     open: false,
-    footerMsg: '© 2019 Made by zero1five',
+    footerMsg: '© 2019 made by zero1five',
     ...config
   }
 

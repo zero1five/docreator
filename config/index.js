@@ -1,6 +1,8 @@
 module.exports = {
   favicon: '',
   siteTitle: 'Docreator',
+  staticServerPort: 3001,
+  sourcePath: './docs',
   autoSubTitle: false,
   homePage: './README.md',
   navbar: [

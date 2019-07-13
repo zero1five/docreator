@@ -67,7 +67,9 @@ export default {
         [home, ...config.navi],
         payload.replace(/^\//, '')
       )
-      const res = yield call(readFile('http://localhost:3001' + fp))
+      const res = yield call(
+        readFile('http://localhost:' + config.staticServerPort + fp)
+      )
 
       yield put({
         type: 'setPage',
