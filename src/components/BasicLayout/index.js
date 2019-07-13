@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Component } from 'react'
 import { Layout, Button, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
@@ -16,7 +16,7 @@ const { Content, Footer, Header, Sider } = Layout
 const Border = '1px solid rgb(232, 232, 232)'
 
 @withRouter
-export default class App extends PureComponent {
+export default class App extends Component {
   state = {
     SiderWidth: 256,
     HeaderHeight: 54,
@@ -24,6 +24,30 @@ export default class App extends PureComponent {
     open: false,
     footerMsg: '© 2019 Made by zero1five',
     ...config
+  }
+
+  constructor(props) {
+    super(props)
+    this.setWindowsTitle(props.location)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location.pathname !== this.props.location.pathname) {
+      this.setWindowsTitle(nextProps.location)
+    }
+  }
+
+  setWindowsTitle(location) {
+    const { siteTitle } = config
+    if (siteTitle !== undefined) {
+      if (config.autoSubTitle && location.pathname !== '/') {
+        const { pathname } = location
+        document.title = `${pathname.slice(1)} | ${config.siteTitle}`
+        return
+      }
+
+      document.title = siteTitle
+    }
   }
 
   renderSider = () => {

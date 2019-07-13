@@ -7,7 +7,6 @@ import config from '../../globalConfig'
 export default class Home extends PureComponent {
   componentWillMount() {
     this.fetchHomePage()
-    this.setWindowsTitle()
   }
 
   fetchHomePage() {
@@ -17,13 +16,6 @@ export default class Home extends PureComponent {
       type: 'markdown/fetchMarkdown',
       payload: config.homePage
     })
-  }
-
-  setWindowsTitle() {
-    const { siteTitle } = config
-    if (siteTitle !== undefined) {
-      document.title = siteTitle
-    }
   }
 
   render() {

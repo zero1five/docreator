@@ -7,17 +7,11 @@ import config from '../../globalConfig'
 export default class BasePage extends PureComponent {
   componentWillMount() {
     this.fetchMarkdown(this.props.location)
-    if (config.autoSubTitle) {
-      this.setBasePageTitle(this.props.location)
-    }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.pathname !== this.props.location.pathname) {
       this.fetchMarkdown(nextProps.location)
-      if (config.autoSubTitle) {
-        this.setBasePageTitle(nextProps.location)
-      }
     }
   }
 
@@ -29,13 +23,6 @@ export default class BasePage extends PureComponent {
       type: 'markdown/fetchMarkdown',
       payload: pathname
     })
-  }
-
-  setBasePageTitle(location) {
-    const { pathname } = location
-    document.title = `${pathname.slice(1)} | ${
-      config.siteTitle ? config.siteTitle : ''
-    }`
   }
 
   render() {
