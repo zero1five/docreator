@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import { Menu } from 'antd'
 import { Link } from 'react-router-dom'
 
+import config from '../../globalConfig'
+
 import './index.less'
 
 const baseMenuItem = ({ name, path, children }) => {
@@ -52,13 +54,34 @@ export default class SiderBody extends PureComponent {
 
   componentWillMount() {
     const {
+      location: { pathname }
+    } = this.props
+    const { homePage } = config
+
+    if (pathname !== '/' || homePage) {
+      this.openHomeKey()
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { homePage } = config
+    if (nextProps.location.pathname === '/') {
+      if (homePage) {
+        this.openHomeKey()
+      } else {
+        this.setState({ openKeys: [] })
+      }
+    }
+  }
+
+  openHomeKey = () => {
+    const {
       location: { pathname },
       navi
     } = this.props
-    if (pathname !== '/') {
-      const openKeys = searchOpenKeys(navi, pathname.slice(1))
-      this.setState({ openKeys })
-    }
+
+    const openKeys = searchOpenKeys(navi, pathname.slice(1))
+    this.setState({ openKeys })
   }
 
   onOpenChange = openKeys => {
