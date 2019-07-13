@@ -12,7 +12,7 @@ module.exports = (sourcePath, options, config) => {
 }
 
 const createBuildWorkder = config => {
-  const webpackConfig = require('./webpackBuildConfig')
+  const webpackConfig = require('./webpack.config.prod')
 
   webpackConfig.plugins.push(
     new HtmlWebpackPlugin({

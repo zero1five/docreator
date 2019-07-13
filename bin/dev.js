@@ -18,7 +18,7 @@ module.exports = (sourcePath, options, config) => {
 }
 
 const createServer = config => {
-  const webpackConfig = require('./webpackConfig')
+  const webpackConfig = require('./webpack.config.dev')
   const serverConfig = require('./webpackServerConfig')
 
   webpackConfig.plugins.push(
