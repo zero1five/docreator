@@ -7,13 +7,17 @@ import config from '../../globalConfig'
 export default class BasePage extends PureComponent {
   componentWillMount() {
     this.fetchMarkdown(this.props.location)
-    this.setBasePageTitle(this.props.location)
+    if (config.autoSubTitle) {
+      this.setBasePageTitle(this.props.location)
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.pathname !== this.props.location.pathname) {
       this.fetchMarkdown(nextProps.location)
-      this.setBasePageTitle(nextProps.location)
+      if (config.autoSubTitle) {
+        this.setBasePageTitle(nextProps.location)
+      }
     }
   }
 
