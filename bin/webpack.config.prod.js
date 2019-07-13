@@ -1,24 +1,27 @@
+const os = require('os')
 const path = require('path')
 const webpack = require('webpack')
+const HappyPack = require('happypack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const paths = require('./paths')
 
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
+
 module.exports = {
   entry: {
-    bundle: paths.appIndexJs,
-    vendor: ['react']
+    bundle: paths.appIndexJs
   },
   output: {
     pathinfo: true,
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].[chunkhash:6].bundle.js',
+    filename: '[name].[chunkhash:6].bundle.js',
     publicPath: './',
     path: path.resolve('dist')
   },
   node: {
     fs: 'empty'
   },
+  mode: 'production',
   module: {
     strictExportPresence: true,
     rules: [
@@ -36,30 +39,9 @@ module.exports = {
       },
       {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
-        use: [
-          {
-            loader: require.resolve('babel-loader'),
-            options: {
-              babelrc: false,
-              configFile: false,
-              presets: [require.resolve('babel-preset-react-app')],
-              plugins: [
-                [
-                  require.resolve('@babel/plugin-proposal-decorators'),
-                  { legacy: true }
-                ],
-                [
-                  require.resolve('@babel/plugin-proposal-class-properties'),
-                  { loose: true }
-                ],
-                [
-                  require.resolve('babel-plugin-import'),
-                  { libraryName: 'antd', style: true }
-                ]
-              ]
-            }
-          }
-        ]
+        use: require.resolve('happypack/loader'),
+        include: paths.appSrc,
+        exclude: /node_modules/
       },
       {
         test: /\.less$/,
@@ -78,34 +60,36 @@ module.exports = {
       }
     ]
   },
-  optimization: {
-    splitChunks: {
-      chunks: 'async',
-      minSize: 20000,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      automaticNameDelimiter: '~',
-      name: true,
-      cacheGroups: {
-        vendor: {
-          name: 'vendor',
-          chunks: chunk => chunk.name == 'main',
-          reuseExistingChunk: true,
-          priority: 1,
-          test: module => /[\\/]node_modules[\\/]/.test(module.context),
-          minChunks: 1,
-          minSize: 0
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true
-        }
-      }
-    }
-  },
   plugins: [
+    new HappyPack({
+      loaders: [
+        {
+          loader: require.resolve('babel-loader'),
+          options: {
+            babelrc: false,
+            configFile: false,
+            presets: [require.resolve('babel-preset-react-app')],
+            plugins: [
+              require.resolve('react-hot-loader/babel'),
+              [
+                require.resolve('@babel/plugin-proposal-decorators'),
+                { legacy: true }
+              ],
+              [
+                require.resolve('@babel/plugin-proposal-class-properties'),
+                { loose: true }
+              ],
+              [
+                require.resolve('babel-plugin-import'),
+                { libraryName: 'antd', style: true }
+              ]
+            ]
+          }
+        }
+      ],
+      threadPool: happyThreadPool,
+      verbose: false
+    }),
     new webpack.ProgressPlugin(),
     new CleanWebpackPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),

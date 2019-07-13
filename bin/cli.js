@@ -7,7 +7,7 @@ const defaults = require('../config')
 
 const noop = () => {}
 
-const mergeConfig = async external => {
+const mergeConfig = async (external = {}) => {
   const appDirectory = await fs.realpath(process.cwd())
   const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
   const configPath = resolveApp('doc.config.js')
