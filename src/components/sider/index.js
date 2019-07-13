@@ -59,7 +59,7 @@ export default class SiderBody extends PureComponent {
     const { homePage } = config
 
     if (pathname !== '/' || homePage) {
-      this.openHomeKey()
+      this.openHomeKey(this.props.location)
     }
   }
 
@@ -67,18 +67,16 @@ export default class SiderBody extends PureComponent {
     const { homePage } = config
     if (nextProps.location.pathname === '/') {
       if (homePage) {
-        this.openHomeKey()
+        this.openHomeKey(nextProps.location)
       } else {
         this.setState({ openKeys: [] })
       }
     }
   }
 
-  openHomeKey = () => {
-    const {
-      location: { pathname },
-      navi
-    } = this.props
+  openHomeKey = location => {
+    const { navi } = this.props
+    const { pathname } = location
 
     const openKeys = searchOpenKeys(navi, pathname.slice(1))
     this.setState({ openKeys })
