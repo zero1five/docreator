@@ -7,7 +7,7 @@ const defaults = require('../config')
 
 const noop = () => {}
 
-const mergeConfig = async () => {
+const mergeConfig = async external => {
   const appDirectory = await fs.realpath(process.cwd())
   const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
   const configPath = resolveApp('doc.config.js')
@@ -19,7 +19,7 @@ const mergeConfig = async () => {
   await fs
     .stat(configPath)
     .then(() => {
-      config = Object.assign(defaults, require(configPath), {
+      config = Object.assign(defaults, require(configPath), external, {
         navi: selector
       })
     })
@@ -41,7 +41,7 @@ const run = async mode => {
     )
   })
 
-  const config = await mergeConfig()
+  const config = await mergeConfig({ webpackMode: mode })
 
   const cmd = require(cmdPath)
   cmd(sourcePath, options, config)

@@ -67,9 +67,11 @@ export default {
         [home, ...config.navi],
         payload.replace(/^\//, '')
       )
-      const res = yield call(
-        readFile('http://localhost:' + config.staticServerPort + fp)
-      )
+      const localPath =
+        config.webpackMode === 'dev'
+          ? 'http://localhost:' + config.staticServerPort + fp
+          : '.' + fp
+      const res = yield call(readFile(localPath))
 
       yield put({
         type: 'setPage',

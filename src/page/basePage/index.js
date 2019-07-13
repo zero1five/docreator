@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import MDX from '@mdx-js/runtime'
 import { connect } from '../../miniDva'
-import config from '../../globalConfig'
 
 @connect(state => ({ ...state.markdown }))
 export default class BasePage extends PureComponent {
