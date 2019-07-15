@@ -1,20 +1,37 @@
 @import '../../index.less';
 
-h1 {
-  color: @wordColor;
-  font-size: 3rem;
-  margin: 0 0 1.4rem;
-  font-weight: 300;
-  line-height: 1.1;
-}
-
-.site-title {
-  color: @wordColor;
-  font-weight: 400;
-  margin: 0 25px 0 0;
-  font-size: 1.2rem;
-
-  &:hover {
+.basic-container {
+  h1 {
     color: @wordColor;
+    font-size: 3rem;
+    margin: 0 0 1.4rem;
+    font-weight: 300;
+    line-height: 1.1;
+  }
+
+  .site-title {
+    color: @wordColor;
+    font-weight: 400;
+    margin: 0 25px 0 0;
+    font-size: 1.2rem;
+
+    &:hover {
+      color: @wordColor;
+    }
+  }
+
+  .footer {
+    text-align: center;
+    background: rgb(250, 250, 250);
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .ant-btn-primary {
+    color: #fff;
+    border-color: #000;
+    background: #000;
   }
 }

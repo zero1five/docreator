@@ -2,6 +2,9 @@ import React, { PureComponent, Component } from 'react'
 import { Layout, Button, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
+import Drawer from 'react-motion-drawer'
+
+import { isSSR } from '../../utils'
 
 import config from '../../globalConfig'
 import './index.less'
@@ -37,6 +40,22 @@ export default class App extends Component {
     }
   }
 
+  componentDidMount() {
+    isSSR(win => {
+      if (win.innerWidth <= 769) {
+        this.setState({
+          screenMode: 'mobile'
+        })
+      }
+    })
+  }
+
+  componentWillUnmount() {
+    isSSR(win => {
+      win.removeEventListener('resize', this.resize)
+    })
+  }
+
   setWindowsTitle(location) {
     const { siteTitle } = config
     if (siteTitle !== undefined) {
@@ -50,7 +69,52 @@ export default class App extends Component {
     }
   }
 
+  resize = () => {
+    isSSR(win => {
+      if (win.innerWidth <= 769) {
+        this.setState({
+          collapsed: true,
+          SiderWidth: 0,
+          collapsedButtonShow: true
+        })
+      } else {
+        this.setState({
+          collapsed: false,
+          SiderWidth: 320,
+          collapsedButtonShow: false
+        })
+      }
+    })
+  }
+
+  collapsed = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+      SiderWidth: this.state.collapsed ? 200 : 0
+    })
+  }
+  siderClose = () => {
+    this.setState({
+      collapsed: true,
+      SiderWidth: 0
+    })
+  }
+
   renderSider = () => {
+    if (this.state.screenMode === 'mobile') {
+      return (
+        <Drawer
+          open={this.state.open}
+          onChange={this.closeDrawer}
+          drawerStyle={{ background: 'white' }}
+          width={200}
+        >
+          <HeaderWithRouter {...this.state} mode="inline" />
+          <SiderWithRouter {...this.state} />
+        </Drawer>
+      )
+    }
+
     return (
       <Sider
         collapsedWidth={0}
@@ -79,8 +143,8 @@ export default class App extends Component {
     const { screenMode, open, siteTitle } = this.state
     return (
       <>
-        {screenMode === 'mobile' && this.props.location.pathname !== '/' ? (
-          <Button type="primary" ghost={true} onClick={this.openshit}>
+        {screenMode === 'mobile' ? (
+          <Button type="primary" onClick={this.openshit}>
             <Icon type={open ? 'menu-unfold' : 'menu-fold'} />
           </Button>
         ) : null}
@@ -101,52 +165,52 @@ export default class App extends Component {
   render() {
     const { screenMode } = this.state
     return (
-      <Layout>
-        <Header
-          style={{
-            padding: '25px 15px 25px 25px',
-            background: '#fff',
-            width: '100%',
-            top: 0,
-            zIndex: 3,
-            position: 'fixed',
-            borderBottom: Border,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            height: this.state.HeaderHeight
-          }}
-        >
-          {this.renderNavBar()}
-        </Header>
-        {this.renderSider()}
-        <Layout
-          style={{
-            display: 'block',
-            background: '#fff',
-            padding: '1.5rem 0',
-            marginTop: this.state.HeaderHeight,
-            marginLeft:
-              this.props.location.pathname === '/' && screenMode === 'mobile'
-                ? 0
-                : this.state.SiderWidth
-          }}
-        >
-          <Content
+      <div className="basic-container">
+        <Layout>
+          <Header
             style={{
-              maxWidth: 770,
-              margin: '0 auto',
-              padding: '0 2.5rem',
-              background: '#fff'
+              padding: '25px 15px 25px 25px',
+              background: '#fff',
+              width: '100%',
+              top: 0,
+              zIndex: 3,
+              position: 'fixed',
+              borderBottom: Border,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              height: this.state.HeaderHeight
             }}
           >
-            {this.props.children}
-          </Content>
-          <Footer style={{ textAlign: 'center', background: '#fff' }}>
-            {this.renderFooter()}
-          </Footer>
+            {this.renderNavBar()}
+          </Header>
+          {this.renderSider()}
+          <Layout
+            style={{
+              display: 'block',
+              background: '#fff',
+              padding: '1.5rem 0',
+              marginTop: this.state.HeaderHeight,
+              marginLeft:
+                this.props.location.pathname === '/' && screenMode === 'mobile'
+                  ? 0
+                  : this.state.SiderWidth
+            }}
+          >
+            <Content
+              style={{
+                maxWidth: 770,
+                margin: '0 auto',
+                padding: '0 2.5rem',
+                background: '#fff'
+              }}
+            >
+              {this.props.children}
+            </Content>
+            <Footer className="footer">{this.renderFooter()}</Footer>
+          </Layout>
         </Layout>
-      </Layout>
+      </div>
     )
   }
 }
