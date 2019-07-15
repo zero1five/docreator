@@ -1,35 +1,48 @@
-@color: rgb(97, 218, 251);
-.rs-link {
-    color: rgba(0, 0, 0, 0.85);
-    display: inline-block;
-    width: 100%;
-    &:hover {
-        color: @color;
-    }
-}
+@import '../../index.less';
 
-.dir-menu-link {
-    color: rgba(0, 0, 0, 0.85);
-    display: inline-block;
-    width: 100%;
-    text-decoration: none;
-    &:focus {
-        text-decoration: none;
-    }
-}
+.sider-container {
+  .ant-menu-submenu {
+    color: @wordColor;
 
-.dir-menu-link-color {
-    &:focus {
-        text-decoration: none;
+    .ant-menu-submenu-title {
+      &:hover {
+        color: @wordColor;
+      }
     }
-}
 
-.ant-menu-submenu-arrow {
+    .ant-menu-item {
+      border-left: .25rem solid transparent;
+
+      &:hover {
+        a {
+          color: @hoverWordColor;
+        }
+      }
+    }
+
+    .ant-menu-item-selected {
+      background-color: transparent;
+      transition: none;
+      box-sizing: border-box;
+      border-left: .25rem solid @hoverWordColor;
+
+      a {
+        color: @hoverWordColor;
+      }
+
+      &::after {
+        border: none;
+      }
+    }
+  }
+
+  .ant-menu-submenu-arrow {
     display: none;
-}
+  }
 
-@media (min-width: 769px) {
+  @media (min-width: 769px) {
     .ant-layout-sider {
         width: 0;
     }
+  }
 }

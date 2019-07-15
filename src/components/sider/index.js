@@ -102,15 +102,17 @@ export default class SiderBody extends PureComponent {
     } = this.props
 
     return (
-      <Menu
-        mode="inline"
-        openKeys={this.state.openKeys}
-        selectedKeys={[pathname.slice(1)]}
-        onOpenChange={this.onOpenChange}
-        width={this.state.SiderWidth}
-      >
-        {this.props.navi.map(baseMenuItem)}
-      </Menu>
+      <div className="sider-container">
+        <Menu
+          mode="inline"
+          openKeys={this.state.openKeys}
+          selectedKeys={[pathname.slice(1)]}
+          onOpenChange={this.onOpenChange}
+          width={this.state.SiderWidth}
+        >
+          {this.props.navi.map(baseMenuItem)}
+        </Menu>
+      </div>
     )
   }
 }
