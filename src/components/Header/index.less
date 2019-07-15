@@ -1,6 +1,10 @@
 @import '../../index.less';
 
 .header-container {
+  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: transparent;
+  }
+
   .ant-menu-item {
     font-size: .9rem;
     color: rgb(39, 38, 38);
@@ -18,9 +22,25 @@
   .ant-menu-item-selected {
     color: @hoverBottomColor;
     border-bottom: 2px solid @hoverBottomColor;
+    background-color: transparent;
 
      a {
       color: @hoverBottomColor;
      }
+
+     &::after {
+      border: none;
+    }
+  }
+
+  @media (max-width: 769px) {
+    .ant-menu-item-selected {
+      border-bottom: none;
+    }
+    .ant-menu-item {
+      &:hover {
+        border-bottom: none;
+      }
+    }
   }
 }

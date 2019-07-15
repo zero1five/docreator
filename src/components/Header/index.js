@@ -28,7 +28,7 @@ export default class HeaderBody extends PureComponent {
   }
 
   render() {
-    const { navbar, mode } = this.props
+    const { navbar, mode, screenMode } = this.props
 
     let current = navbar.find(
       n => '/' + n.route === this.props.location.pathname
@@ -58,11 +58,13 @@ export default class HeaderBody extends PureComponent {
         ? current.route
         : 'readme'
 
+    const wrapperStyle =
+      screenMode === 'computer'
+        ? { float: 'right', display: 'flex', alignItems: 'center' }
+        : {}
+
     return (
-      <div
-        style={{ float: 'right', display: 'flex', alignItems: 'center' }}
-        className="header-container"
-      >
+      <div style={wrapperStyle} className="header-container">
         <Menu
           onClick={this.handleClick}
           selectedKeys={[selectkey]}

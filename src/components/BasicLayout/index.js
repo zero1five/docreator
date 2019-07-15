@@ -40,13 +40,14 @@ export default class App extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     isSSR(win => {
       if (win.innerWidth <= 769) {
         this.setState({
           screenMode: 'mobile'
         })
       }
+      win.addEventListener('resize', this.resize)
     })
   }
 
@@ -73,12 +74,14 @@ export default class App extends Component {
     isSSR(win => {
       if (win.innerWidth <= 769) {
         this.setState({
+          screenMode: 'mobile',
           collapsed: true,
           SiderWidth: 0,
           collapsedButtonShow: true
         })
       } else {
         this.setState({
+          screenMode: 'computer',
           collapsed: false,
           SiderWidth: 320,
           collapsedButtonShow: false
