@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 
 import config from '../../globalConfig'
-
+import './index.less'
 import SiderBody from '../Sider'
 import HeaderBody from '../Header'
 
@@ -85,7 +85,9 @@ export default class App extends Component {
           </Button>
         ) : null}
         <div className="logo">
-          <Link to={'/'}>{siteTitle}</Link>
+          <Link to={'/'} className="site-title">
+            {siteTitle}
+          </Link>
         </div>
         {screenMode === 'mobile' ? null : <HeaderWithRouter {...this.state} />}
       </>
@@ -102,7 +104,7 @@ export default class App extends Component {
       <Layout>
         <Header
           style={{
-            padding: 25,
+            padding: '25px 15px 25px 25px',
             background: '#fff',
             width: '100%',
             top: 0,

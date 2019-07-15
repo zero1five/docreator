@@ -7,7 +7,7 @@ import './index.less'
 
 const baseMenuItem = ({ title, link }) => {
   return (
-    <Menu.Item key={title}>
+    <Menu.Item key={title} className="nav-link">
       {/https?/.test(link) ? (
         <a href={link}>{title}</a>
       ) : (
