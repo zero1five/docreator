@@ -1,17 +1,26 @@
 @import '../../index.less';
 
-.nav-link {
-  a {
-    font-size: .9rem!important;
-    color: rgb(39, 38, 38)!important;
+.header-container {
+  .ant-menu-item {
+    font-size: .9rem;
+    color: rgb(39, 38, 38);
+
+    &:hover {
+      color: @hoverBottomColor;
+      border-bottom: 2px solid @hoverBottomColor;
+
+      a {
+        color: @wordColor;
+      }
+    }
   }
 
-  &:hover {
-    color: @hoverBottomColor!important;
-    border-bottom: 2px solid @hoverBottomColor!important;
+  .ant-menu-item-selected {
+    color: @hoverBottomColor;
+    border-bottom: 2px solid @hoverBottomColor;
 
-    a {
-      color: @wordColor!important;
-    }
+     a {
+      color: @hoverBottomColor;
+     }
   }
 }

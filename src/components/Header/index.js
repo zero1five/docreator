@@ -7,7 +7,7 @@ import './index.less'
 
 const baseMenuItem = ({ title, link }) => {
   return (
-    <Menu.Item key={title} className="nav-link">
+    <Menu.Item key={link}>
       {/https?/.test(link) ? (
         <a href={link}>{title}</a>
       ) : (
@@ -53,13 +53,16 @@ export default class HeaderBody extends PureComponent {
 
     const selectkey =
       this.props.location.pathname === '/'
-        ? null
+        ? '/'
         : current
         ? current.route
         : 'readme'
 
     return (
-      <div style={{ float: 'right', display: 'flex', alignItems: 'center' }}>
+      <div
+        style={{ float: 'right', display: 'flex', alignItems: 'center' }}
+        className="header-container"
+      >
         <Menu
           onClick={this.handleClick}
           selectedKeys={[selectkey]}
