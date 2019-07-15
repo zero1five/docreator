@@ -2,7 +2,7 @@
 
 .sider-container {
   .ant-menu-submenu {
-    color: @wordColor;
+    color: @unhoverWordColor;
 
     .ant-menu-submenu-title {
       &:hover {
@@ -11,8 +11,6 @@
     }
 
     .ant-menu-item {
-      border-left: .25rem solid transparent;
-
       &:hover {
         a {
           color: @hoverWordColor;
@@ -23,11 +21,21 @@
     .ant-menu-item-selected {
       background-color: transparent;
       transition: none;
-      box-sizing: border-box;
-      border-left: .25rem solid @hoverWordColor;
 
       a {
         color: @hoverWordColor;
+      }
+
+      &::before {
+        display: block;
+        content: '';
+        border-width:8px 8px 8px 8px;
+        border-style:solid;
+        border-color:transparent transparent transparent #000;
+        position:absolute;
+        left: .2rem;
+        top: 50%;
+        margin-top: -8px;
       }
 
       &::after {
