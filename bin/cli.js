@@ -5,11 +5,10 @@ const [mode, sourcePath, ...options] = process.argv.slice(2)
 const { getMarkdown } = require('./r')
 const defaults = require('../config')
 
-const noop = () => {}
-
 const mergeConfig = async (external = {}) => {
   const appDirectory = await fs.realpath(process.cwd())
-  const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
+  const resolveApp = relativePath =>
+    path.resolve(appDirectory, sourcePath, relativePath)
   const configPath = resolveApp('doc.config.js')
   const docsPath = resolveApp('docs')
 
@@ -20,10 +19,13 @@ const mergeConfig = async (external = {}) => {
     .stat(configPath)
     .then(() => {
       config = Object.assign(defaults, require(configPath), external, {
-        navi: selector
+        navi: selector,
+        directoryPath: resolveApp('.')
       })
     })
-    .catch(noop)
+    .catch(err => {
+      throw err
+    })
 
   return config
 }

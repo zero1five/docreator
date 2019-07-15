@@ -15,7 +15,8 @@
     "commit": "git-cz",
     "changelog": "conventional-changelog -i CHANGELOG.md -s -r 0",
     "release": "release-it --no-git.requireCleanWorkingDir",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn build",
+    "website": "docreator dev ./website"
   },
   "repository": {
     "url": "zero1five/docreator",
@@ -32,6 +33,7 @@
     "babel-plugin-import": "^1.12.0",
     "babel-preset-react-app": "^9.0.0",
     "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.0.0",
     "fs-extra": "^8.0.1",
     "happypack": "^5.0.1",
     "html-webpack-plugin": "^3.2.0",
