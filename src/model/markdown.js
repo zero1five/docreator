@@ -66,7 +66,8 @@ export default {
       const fp = resolveFilePath(
         [home, ...config.navi],
         payload.replace(/^\//, '')
-      )
+      ).replace(/([\u4e00-\u9fa5])/g, str => encodeURIComponent(str))
+
       const localPath =
         config.webpackMode === 'dev'
           ? 'http://localhost:' + config.staticServerPort + fp
