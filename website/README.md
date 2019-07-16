@@ -48,4 +48,4 @@ module.exports = {
 
 不出意外地话，Docreator会自动打开一个网页显示:
 
-![README.md](https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=702257389,1274025419&fm=27&gp=0.jpg "hello world")
+![README.md](https://github.com/zero1five/docreator/website/images/quickstart.png "hello world")
