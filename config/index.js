@@ -12,5 +12,6 @@ module.exports = {
       route: 'github',
       link: 'https://github.com/zero1five/docreator'
     }
-  ]
+  ],
+  siderMenu: []
 }

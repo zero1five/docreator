@@ -6,17 +6,17 @@ import config from '../../globalConfig'
 
 import './index.less'
 
-const baseMenuItem = ({ name, path, children }) => {
+const baseMenuItem = ({ title, path, children }) => {
   if (children && children.length > 0) {
     return (
-      <Menu.SubMenu key={name} title={name}>
+      <Menu.SubMenu key={title} title={title}>
         {children.map(baseMenuItem)}
       </Menu.SubMenu>
     )
   } else {
     return (
-      <Menu.Item key={name}>
-        <Link to={name}>{name}</Link>
+      <Menu.Item key={title}>
+        <Link to={title}>{title}</Link>
       </Menu.Item>
     )
   }
@@ -100,7 +100,7 @@ export default class SiderBody extends PureComponent {
     const {
       location: { pathname }
     } = this.props
-
+    console.log(this.props)
     return (
       <div className="sider-container">
         <Menu

@@ -7,17 +7,17 @@ const resolveFilePath = (router, pathname) => {
 
   const recursive = (router, pathname) => {
     for (let i = 0, l = router.length; i < l; i++) {
-      const { name, path, children } = router[i]
+      const { title, path, children } = router[i]
       if (children) {
         recursive(children, pathname)
-      } else if (pathname === name) {
+      } else if (pathname === title) {
         return (fp = path)
       }
     }
   }
 
   recursive(router, pathname)
-  return fp
+  return fp.replace(/\.\//, '/')
 }
 
 const readFile = path => () =>
@@ -57,7 +57,7 @@ export default {
       const homePath = config.homePage
 
       const home = {
-        name: homePath,
+        title: homePath,
         path: homePath[0] === '.' ? homePath.slice(1) : homePath,
         route: '/',
         type: 'file',
@@ -67,7 +67,7 @@ export default {
         [home, ...config.navi],
         payload.replace(/^\//, '')
       ).replace(/([\u4e00-\u9fa5])/g, str => encodeURIComponent(str))
-
+      console.log(fp)
       const localPath =
         config.webpackMode === 'dev'
           ? 'http://localhost:' + config.staticServerPort + fp

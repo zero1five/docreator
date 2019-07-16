@@ -18,7 +18,7 @@ const modulesMaker = (path, files) => {
         let removedf = f.replace(/^\d+./, '')
         return {
           route: chinese2pinyin(removedf).replace(' ', ''),
-          name: removedf,
+          title: removedf,
           path: join(path, f),
           children: inside,
           type: 'dir',
@@ -32,7 +32,7 @@ const modulesMaker = (path, files) => {
       let removedf = f.replace(/^\d+./, '').replace('.md', '')
       return {
         route: chinese2pinyin(removedf).replace(' ', ''),
-        name: removedf,
+        title: removedf,
         path: relativePath,
         children: void 666,
         type: 'file',

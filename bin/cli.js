@@ -10,15 +10,17 @@ const mergeConfig = async (external = {}) => {
   const resolveApp = relativePath =>
     path.resolve(appDirectory, sourcePath, relativePath)
   const configPath = resolveApp('doc.config.js')
+  const doConfig = require(configPath)
   const docsPath = resolveApp('docs')
 
-  const selector = getMarkdown(docsPath)
-
+  const selector =
+    doConfig.siderMenu.length > 0 ? doConfig.siderMenu : getMarkdown(docsPath)
+  console.log(getMarkdown(docsPath))
   let config = {}
   await fs
     .stat(configPath)
     .then(() => {
-      config = Object.assign(defaults, require(configPath), external, {
+      config = Object.assign(defaults, doConfig, external, {
         navi: selector,
         directoryPath: resolveApp('.')
       })
