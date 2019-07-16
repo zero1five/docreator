@@ -28,13 +28,13 @@ const searchOpenKeys = (router, name) => {
 
   const recursive = (router, pathname) => {
     for (let i = 0, l = router.length; i < l; i++) {
-      const { name, children } = router[i]
+      const { title, children } = router[i]
       if (resolved) return
       if (children) {
         // 如果是文档，将当前路径push进resolve
-        resolve.push(name)
+        resolve.push(title)
         recursive(children, pathname)
-      } else if (router.find(x => x.name === pathname)) {
+      } else if (router.find(x => x.title === pathname)) {
         resolved = true
         break
       } else {
