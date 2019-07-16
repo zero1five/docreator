@@ -1,19 +1,113 @@
 @import '../../index.less';
 
+body {
+  color: @wordColor;
+  font: @wordFont;
+}
+
 .basic-container {
+  * { box-sizing: border-box; }
+
   h1 {
-    box-sizing: border-box;
     display: block;
     margin-block-start: 0.67em;
     margin-block-end: 0.67em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    font: 16px/1.7 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
     font-size: 3rem;
     margin: 0 0 1.4rem;
     font-weight: 300;
     line-height: 1.1;
     color: @wordColor;
+  }
+
+  h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    font-size: 2rem;
+    border-bottom: 1px solid @markdownBorderBottomColor;
+    margin-top: 7rem;
+    padding-bottom: 5px;
+    font-weight: 300;
+    line-height: 1.2;
+    color: @wordColor;
+  }
+
+  p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color: @wordColor;
+    margin: 0px 0 15px 0;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .page-content {
+    ul {
+      padding-left: 20px;
+      margin: 1rem 0;
+      display: block;
+      list-style-type: disc;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      padding-inline-start: 40px;
+
+      li {
+        font-size: 16px;
+        line-height: 1.7;
+        margin: 0 0 .3rem 0;
+        color: @wordColor;
+        font-weight: 400;
+
+        strong {
+          font-weight: 500;
+        }
+      }
+    }
+
+    pre {
+      padding: 20px;
+      overflow: auto;
+      position: relative;
+      font-size: 13px;
+      margin: 2rem 0;
+      border-radius: 4px;
+      z-index: 2;
+      font-family: @codeFont;
+      white-space: pre;
+      background: @codeBackground;
+      box-shadow: inset 0 0 0 @codeShadoWidth @codeShadowColor;
+
+      code {
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        border: none;
+        font-size: 100%;
+        line-height: 22.1px;
+        background: transparent;
+        color: @codeColor;
+      }
+    }
+
+    code {
+      font-family: @codeFont;
+      font-size: 90%;
+      background: @codeBackground;
+      border-radius: 4px;
+      padding: 3px 5px;
+      color: @codeColor;
+    }
   }
 
   .site-title {
@@ -29,7 +123,7 @@
 
   .footer {
     text-align: center;
-    background: rgb(250, 250, 250);
+    background: transparent;
 
     p {
       margin: 0;

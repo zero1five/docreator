@@ -49,10 +49,13 @@ const modulesMaker = (path, files) => {
  */
 const scan = src => {
   const naviPath = join(src)
-  const files = fs.readdirSync(resolve(naviPath))
-
-  let i = modulesMaker(naviPath, files)
-  return i
+  try {
+    const files = fs.readdirSync(resolve(naviPath))
+    let i = modulesMaker(naviPath, files)
+    return i
+  } catch {
+    return []
+  }
 }
 
 exports.getMarkdown = scan

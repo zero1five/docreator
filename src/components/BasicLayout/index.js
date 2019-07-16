@@ -104,6 +104,11 @@ export default class App extends Component {
   }
 
   renderSider = () => {
+    const { navi } = this.state
+    if (navi.length === 0) {
+      return null
+    }
+
     if (this.state.screenMode === 'mobile') {
       return (
         <Drawer
@@ -133,7 +138,7 @@ export default class App extends Component {
         }}
         width={this.state.SiderWidth}
       >
-        <SiderWithRouter {...this.state} />
+        {<SiderWithRouter {...this.state} />}
       </Sider>
     )
   }
@@ -166,7 +171,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { screenMode } = this.state
+    const { screenMode, navi, footer } = this.state
     return (
       <div className="basic-container">
         <Layout>
@@ -194,7 +199,10 @@ export default class App extends Component {
               background: '#fff',
               padding: '1.5rem 0',
               marginTop: this.state.HeaderHeight,
-              marginLeft: screenMode === 'mobile' ? 0 : this.state.SiderWidth
+              marginLeft:
+                screenMode === 'mobile' || navi.length === 0
+                  ? 0
+                  : this.state.SiderWidth
             }}
           >
             <Content
@@ -204,10 +212,13 @@ export default class App extends Component {
                 padding: '0 2.5rem',
                 background: '#fff'
               }}
+              className="page-content"
             >
               {this.props.children}
             </Content>
-            <Footer className="footer">{this.renderFooter()}</Footer>
+            {footer && (
+              <Footer className="footer">{this.renderFooter()}</Footer>
+            )}
           </Layout>
         </Layout>
       </div>

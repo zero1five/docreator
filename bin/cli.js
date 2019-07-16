@@ -14,8 +14,10 @@ const mergeConfig = async (external = {}) => {
   const docsPath = resolveApp('docs')
 
   const selector =
-    doConfig.siderMenu.length > 0 ? doConfig.siderMenu : getMarkdown(docsPath)
-  console.log(getMarkdown(docsPath))
+    doConfig.siderMenu && doConfig.siderMenu.length > 0
+      ? doConfig.siderMenu
+      : getMarkdown(docsPath)
+
   let config = {}
   await fs
     .stat(configPath)
