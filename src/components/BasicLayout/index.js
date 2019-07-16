@@ -194,16 +194,13 @@ export default class App extends Component {
               background: '#fff',
               padding: '1.5rem 0',
               marginTop: this.state.HeaderHeight,
-              marginLeft:
-                this.props.location.pathname === '/' && screenMode === 'mobile'
-                  ? 0
-                  : this.state.SiderWidth
+              marginLeft: screenMode === 'mobile' ? 0 : this.state.SiderWidth
             }}
           >
             <Content
               style={{
                 maxWidth: 770,
-                margin: '0 auto',
+                margin: '0 auto 20px',
                 padding: '0 2.5rem',
                 background: '#fff'
               }}

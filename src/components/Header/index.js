@@ -5,18 +5,6 @@ import { connect } from '../../miniDva'
 
 import './index.less'
 
-const baseMenuItem = ({ title, link }) => {
-  return (
-    <Menu.Item key={link}>
-      {/https?/.test(link) ? (
-        <a href={link}>{title}</a>
-      ) : (
-        <Link to={link}>{title}</Link>
-      )}
-    </Menu.Item>
-  )
-}
-
 @connect()
 export default class HeaderBody extends PureComponent {
   static defaultProps = {
@@ -62,6 +50,18 @@ export default class HeaderBody extends PureComponent {
       screenMode === 'computer'
         ? { float: 'right', display: 'flex', alignItems: 'center' }
         : {}
+
+    const baseMenuItem = ({ title, link }) => {
+      return (
+        <Menu.Item key={link} style={{ height: this.props.HeaderHeight - 2 }}>
+          {/https?/.test(link) ? (
+            <a href={link}>{title}</a>
+          ) : (
+            <Link to={link}>{title}</Link>
+          )}
+        </Menu.Item>
+      )
+    }
 
     return (
       <div style={wrapperStyle} className="header-container">

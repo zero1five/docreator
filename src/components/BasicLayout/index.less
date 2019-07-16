@@ -2,11 +2,18 @@
 
 .basic-container {
   h1 {
-    color: @wordColor;
+    box-sizing: border-box;
+    display: block;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font: 16px/1.7 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
     font-size: 3rem;
     margin: 0 0 1.4rem;
     font-weight: 300;
     line-height: 1.1;
+    color: @wordColor;
   }
 
   .site-title {
@@ -33,5 +40,9 @@
     color: #fff;
     border-color: #000;
     background: #000;
+  }
+
+  .logo {
+    line-height: 52px;
   }
 }

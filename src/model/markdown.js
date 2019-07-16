@@ -67,13 +67,12 @@ export default {
         [home, ...config.navi],
         payload.replace(/^\//, '')
       ).replace(/([\u4e00-\u9fa5])/g, str => encodeURIComponent(str))
-      console.log(fp)
       const localPath =
         config.webpackMode === 'dev'
           ? 'http://localhost:' + config.staticServerPort + fp
           : '.' + fp
       const res = yield call(readFile(localPath))
-
+      console.log('response body: ', res)
       yield put({
         type: 'setPage',
         payload: {
