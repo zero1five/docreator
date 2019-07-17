@@ -4,7 +4,8 @@ import { connect } from '../../miniDva'
 
 @connect(state => ({ ...state.markdown }))
 export default class BasePage extends PureComponent {
-  componentWillMount() {
+  constructor(props) {
+    super(props)
     this.fetchMarkdown(this.props.location)
   }
 

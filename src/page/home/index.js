@@ -5,13 +5,13 @@ import config from '../../globalConfig'
 
 @connect(state => ({ ...state.markdown }))
 export default class Home extends PureComponent {
-  componentWillMount() {
+  constructor(props) {
+    super(props)
     this.fetchHomePage()
   }
 
   fetchHomePage() {
     const { dispatch } = this.props
-
     dispatch({
       type: 'markdown/fetchMarkdown',
       payload: config.homePage
@@ -23,7 +23,7 @@ export default class Home extends PureComponent {
       page: { html }
     } = this.props
     const components = {}
-
+    console.log(this.props.page)
     return <MDX components={components}>{html}</MDX>
   }
 }

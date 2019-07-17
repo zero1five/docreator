@@ -72,7 +72,7 @@ export default {
           ? 'http://localhost:' + config.staticServerPort + fp
           : '.' + fp
       const res = yield call(readFile(localPath))
-      console.log('response body: ', res)
+
       yield put({
         type: 'setPage',
         payload: {

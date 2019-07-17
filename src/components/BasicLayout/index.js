@@ -1,4 +1,4 @@
-import React, { PureComponent, Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Layout, Button, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
@@ -19,7 +19,7 @@ const { Content, Footer, Header, Sider } = Layout
 const Border = '1px solid rgb(232, 232, 232)'
 
 @withRouter
-export default class App extends Component {
+export default class App extends PureComponent {
   state = {
     SiderWidth: 256,
     HeaderHeight: 54,
