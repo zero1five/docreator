@@ -9,9 +9,10 @@ module.exports = {
       children: [
         { title: '介绍', path: './docs/指南/介绍.md' },
         {
-          title: 'Markdown中使用React',
+          title: '在Markdown中使用React',
           path: './docs/指南/react-in-markdown.md'
-        }
+        },
+        { title: '插件系统', path: './docs//指南/plugins.md' }
       ]
     }
   ]

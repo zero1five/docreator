@@ -23,7 +23,7 @@ export default class Home extends PureComponent {
       page: { html }
     } = this.props
     const components = {}
-    console.log(this.props.page)
+
     return <MDX components={components}>{html}</MDX>
   }
 }

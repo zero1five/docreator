@@ -21,6 +21,9 @@ module.exports = {
   },
   mode: 'development',
   devtool: 'source-map',
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
     strictExportPresence: true,
     rules: [
@@ -39,7 +42,7 @@ module.exports = {
       {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         use: require.resolve('happypack/loader'),
-        include: paths.appSrc,
+        // include: paths.appSrc,
         exclude: /node_modules/
       },
       {

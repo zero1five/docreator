@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import MDX from '@mdx-js/runtime'
 import { connect } from '../../miniDva'
 
+import Basic from '../../../website/components/Basic/index'
+
 @connect(state => ({ ...state.markdown }))
 export default class BasePage extends PureComponent {
   constructor(props) {
@@ -29,7 +31,9 @@ export default class BasePage extends PureComponent {
     const {
       page: { html }
     } = this.props
-    const components = {}
+    const components = {
+      Basic: props => <Basic />
+    }
 
     return <MDX components={components}>{html}</MDX>
   }

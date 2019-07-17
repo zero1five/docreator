@@ -66,6 +66,7 @@
     "ava": "^1.0.1",
     "babel-eslint": "^10.0.2",
     "bili": "^3.4.2",
+    "bizcharts": "^3.5.4",
     "chalk": "^2.4.1",
     "commitizen": "^3.0.5",
     "conventional-changelog-cli": "^2.0.11",
