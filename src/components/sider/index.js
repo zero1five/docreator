@@ -54,16 +54,28 @@ export default class SiderBody extends PureComponent {
 
   componentWillMount() {
     const {
-      location: { pathname }
+      location: { pathname },
+      navi,
+      opensideMenu
     } = this.props
     const { homePage } = config
 
-    if (pathname !== '/' || homePage) {
-      this.openHomeKey(this.props.location)
+    // 如果open设置为true，默认打开所有的菜单
+    if (opensideMenu) {
+      this.setState({
+        openKeys: navi.map(x => x.title)
+      })
+    } else {
+      if (pathname !== '/' || homePage) {
+        this.openHomeKey(this.props.location)
+      }
     }
   }
 
   componentWillReceiveProps(nextProps) {
+    const { opensideMenu } = this.props
+    if (opensideMenu) return
+
     const { homePage } = config
     if (nextProps.location.pathname === '/') {
       if (homePage) {
@@ -83,6 +95,9 @@ export default class SiderBody extends PureComponent {
   }
 
   onOpenChange = openKeys => {
+    const { opensideMenu } = this.props
+    if (opensideMenu) return
+
     const latestOpenKey = openKeys.find(
       key => this.state.openKeys.indexOf(key) === -1
     )
@@ -100,7 +115,7 @@ export default class SiderBody extends PureComponent {
     const {
       location: { pathname }
     } = this.props
-    console.log(this.props)
+
     return (
       <div className="sider-container">
         <Menu

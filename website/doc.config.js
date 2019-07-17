@@ -1,5 +1,7 @@
 module.exports = {
   siteTitle: 'Docreator',
+  footer: true,
+  opensideMenu: true,
   siderMenu: [
     {
       title: '指南',

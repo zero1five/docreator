@@ -4,6 +4,7 @@ module.exports = {
   staticServerPort: 3001,
   sourcePath: './docs',
   autoSubTitle: false,
+  opensideMenu: false,
   homePage: './README.md',
   navbar: [
     { title: 'Home', route: 'home', link: '/' },

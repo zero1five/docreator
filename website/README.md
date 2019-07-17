@@ -46,6 +46,6 @@ module.exports = {
 "website": docreator dev .
 ```
 
-不出意外地话，Docreator会自动打开一个网页显示:
+不出意外的话，Docreator会自动打开一个网页显示:
 
-![README.md](https://github.com/zero1five/docreator/website/images/quickstart.png "hello world")
+![README.md](https://raw.githubusercontent.com/zero1five/docreator/master/website/images/quickstart.png)
