@@ -16,7 +16,9 @@ const baseMenuItem = ({ title, path, children }) => {
   } else {
     return (
       <Menu.Item key={title}>
-        <Link to={title}>{title}</Link>
+        <Link to={title} onClick={() => window.scrollTo(0, 0)}>
+          {title}
+        </Link>
       </Menu.Item>
     )
   }

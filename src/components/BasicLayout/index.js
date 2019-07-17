@@ -157,7 +157,11 @@ export default class App extends Component {
           </Button>
         ) : null}
         <div className="logo">
-          <Link to={'/'} className="site-title">
+          <Link
+            to={'/'}
+            className="site-title"
+            onClick={() => window.scrollTo(0, 0)}
+          >
             {siteTitle}
           </Link>
         </div>
