@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import MDX from '@mdx-js/runtime'
+import MDXRender from '../../components/MDXRender'
 import { connect } from '../../miniDva'
 import config from '../../globalConfig'
 
@@ -22,8 +22,7 @@ export default class Home extends PureComponent {
     const {
       page: { html }
     } = this.props
-    const components = {}
 
-    return <MDX components={components}>{html}</MDX>
+    return <MDXRender html={html} />
   }
 }

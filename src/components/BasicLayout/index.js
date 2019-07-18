@@ -21,7 +21,7 @@ const Border = '1px solid rgb(232, 232, 232)'
 @withRouter
 export default class App extends PureComponent {
   state = {
-    SiderWidth: 256,
+    SiderWidth: 279,
     HeaderHeight: 54,
     screenMode: 'computer',
     open: false,

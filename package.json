@@ -27,7 +27,7 @@
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-decorators": "^7.4.4",
-    "@mdx-js/runtime": "^1.0.21",
+    "@mdx-js/runtime": "^1.1.0",
     "antd": "^3.19.8",
     "babel-loader": "^8.0.6",
     "babel-plugin-import": "^1.12.0",
@@ -53,7 +53,11 @@
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.4",
+    "rehype-add-classes": "^1.0.0",
+    "remark-autolink-headings": "^5.2.1",
+    "remark-slug": "^5.1.2",
     "showdown": "^1.9.0",
+    "title": "^3.4.1",
     "webpack": "^4.35.0",
     "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.7.2"

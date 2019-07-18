@@ -13,5 +13,6 @@ module.exports = {
       link: 'https://github.com/zero1five/docreator'
     }
   ],
-  sideMenu: []
+  sideMenu: [],
+  plugins: []
 }
