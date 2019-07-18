@@ -1,7 +1,6 @@
 module.exports = {
   favicon: '',
   siteTitle: 'Docreator',
-  staticServerPort: 3001,
   sourcePath: './docs',
   autoSubTitle: false,
   opensideMenu: false,
