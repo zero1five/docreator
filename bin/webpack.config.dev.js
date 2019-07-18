@@ -1,4 +1,5 @@
 const os = require('os')
+const path = require('path')
 const webpack = require('webpack')
 const HappyPack = require('happypack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -22,7 +23,10 @@ module.exports = {
   mode: 'development',
   devtool: 'source-map',
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
+    alias: {
+      '@': paths.appSrc
+    }
   },
   module: {
     strictExportPresence: true,
