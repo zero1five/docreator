@@ -12,7 +12,15 @@ module.exports = {
           title: '在Markdown中使用React',
           path: './docs/指南/react-in-markdown.md'
         },
-        { title: '插件系统', path: './docs//指南/plugins.md' }
+        { title: '插件系统', path: './docs/指南/插件.md' }
+      ]
+    },
+    {
+      title: '参考',
+      path: './dosc/参考',
+      children: [
+        { title: '配置项', path: './docs/参考/配置项.md' },
+        { title: '插件API', path: './docs/参考/插件API.md' }
       ]
     }
   ]
