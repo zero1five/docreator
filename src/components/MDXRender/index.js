@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react'
 import MDX from '@mdx-js/runtime'
-import config from '../../globalConfig'
-import Basic from '../../../website/components/Basic/index'
 
-import visit from 'unist-util-visit'
+const config = require('../../../website/doc.config')
+
+import Basic from '../../../website/components/Basic/index'
 
 export default class MDXRender extends PureComponent {
   render() {
@@ -15,7 +15,7 @@ export default class MDXRender extends PureComponent {
     return (
       <MDX
         components={components}
-        remarkPlugins={config.plugins.map(eval)}
+        remarkPlugins={[...config.plugins]}
         rehypePlugins={[]}
         children={html}
       />
