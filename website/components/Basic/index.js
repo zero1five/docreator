@@ -56,7 +56,7 @@ export default class Basic extends React.Component {
           data={data}
           scale={cols}
           forceFit
-          padding={[20, 30, 20, 20]}
+          padding={[20, 30, 50, 20]}
         >
           <Axis name="year" />
           <Axis name="value" />

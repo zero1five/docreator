@@ -28,6 +28,27 @@ the background color!**
 
 <Basic />
 
+在工作目录创建一个components文件夹，处于该文件夹下的组件都会自动加载。
+在该文件夹下面创建一个组件。
+
+```bash
+.
+├── components
+│ ├── Basic
+│   ├── index.js  
+│
+
+```
+
+`doc.config.js`
+```javascript
+module.exports = {
+  // ...
+  componentPath: './components'
+}
+```
+
+在Markdown文件中直接使用，用法与react组件相同。
 ```javascript
 // ...
 <Basic />

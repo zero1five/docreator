@@ -62,6 +62,13 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(jpg|png|gif|bmp|jpeg|md)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 8192
+        }
       }
     ]
   },
