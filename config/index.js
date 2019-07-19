@@ -14,5 +14,5 @@ module.exports = {
     }
   ],
   sideMenu: [],
-  plugins: []
+  componentPath: './components'
 }

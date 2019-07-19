@@ -1,5 +1,3 @@
-const APIForm = require('./plugins/APIForm')
-
 module.exports = {
   siteTitle: 'Docreator',
   footer: true,
@@ -23,5 +21,5 @@ module.exports = {
       children: [{ title: '配置项', path: './docs/参考/配置项.md' }]
     }
   ],
-  plugins: [APIForm]
+  componentPath: './components'
 }

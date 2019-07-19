@@ -1,5 +1,4 @@
 const os = require('os')
-const path = require('path')
 const webpack = require('webpack')
 const HappyPack = require('happypack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')

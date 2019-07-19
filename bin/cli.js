@@ -12,11 +12,23 @@ const mergeConfig = async (external = {}) => {
   const configPath = resolveApp('doc.config.js')
   const doConfig = require(configPath)
   const docsPath = resolveApp('docs')
+  const cPath = resolveApp(doConfig.componentPath || defaults.componentPath)
 
   const selector =
     doConfig.sideMenu && doConfig.sideMenu.length > 0
       ? doConfig.sideMenu
       : getMarkdown(docsPath)
+
+  const cpNames = await fs
+    .readdir(cPath)
+    .then(files => {
+      console.log(files)
+      return files
+    })
+    .catch(err => {
+      console.err(err)
+      return []
+    })
 
   let config = {}
   await fs
@@ -24,7 +36,8 @@ const mergeConfig = async (external = {}) => {
     .then(() => {
       config = Object.assign(defaults, doConfig, external, {
         navi: selector,
-        directoryPath: resolveApp('.')
+        directoryPath: resolveApp('.'),
+        cpNames
       })
     })
     .catch(err => {
