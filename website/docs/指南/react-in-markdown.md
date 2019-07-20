@@ -58,6 +58,6 @@ module.exports = {
 
 ### 为什么不可以直接在markdwon文件中import组件
 
-MDX使用的是 [buble](https://github.com/bublejs/buble) 作为解析器，
+MDX/runtime使用的是 [buble](https://github.com/bublejs/buble) 作为解析器，
 而Buble是不支持`import`和`export`声明的。[why](https://buble.surge.sh/guide/#using-es-modules)
 

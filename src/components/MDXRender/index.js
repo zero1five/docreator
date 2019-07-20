@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import MDX from '@mdx-js/runtime'
+
 import config from '../../globalConfig'
 
 const loadComponent = path => {
