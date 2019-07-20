@@ -43,6 +43,10 @@ module.exports = {
         use: require.resolve('./globalEnvLoader.js')
       },
       {
+        test: /MDXRender/,
+        use: require.resolve('./MDXRenderLoader.js')
+      },
+      {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         use: require.resolve('happypack/loader'),
         // include: paths.appSrc,

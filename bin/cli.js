@@ -1,9 +1,21 @@
 #! /usr/bin/env node
 const path = require('path')
+const paths = require('./paths')
 const fs = require('fs').promises
 const [mode, sourcePath, ...options] = process.argv.slice(2)
 const { getMarkdown } = require('./r')
 const defaults = require('../config')
+
+const loadDirFileNames = cPath =>
+  fs
+    .readdir(cPath)
+    .then(files => {
+      return files
+    })
+    .catch(err => {
+      console.error(err)
+      return []
+    })
 
 const mergeConfig = async (external = {}) => {
   const appDirectory = await fs.realpath(process.cwd())
@@ -12,6 +24,7 @@ const mergeConfig = async (external = {}) => {
   const configPath = resolveApp('doc.config.js')
   const doConfig = require(configPath)
   const docsPath = resolveApp('docs')
+  const in_cpath = path.resolve(paths.appSrc, './builtIn-components')
   const cPath = resolveApp(doConfig.componentPath || defaults.componentPath)
 
   const selector =
@@ -19,15 +32,8 @@ const mergeConfig = async (external = {}) => {
       ? doConfig.sideMenu
       : getMarkdown(docsPath)
 
-  const cpNames = await fs
-    .readdir(cPath)
-    .then(files => {
-      return files
-    })
-    .catch(err => {
-      console.err(err)
-      return []
-    })
+  const in_cpNames = await loadDirFileNames(in_cpath)
+  const out_cpNames = await loadDirFileNames(cPath)
 
   let config = {}
   await fs
@@ -36,7 +42,8 @@ const mergeConfig = async (external = {}) => {
       config = Object.assign(defaults, doConfig, external, {
         navi: selector,
         directoryPath: resolveApp('.'),
-        cpNames
+        in_cpNames,
+        out_cpNames
       })
     })
     .catch(err => {
