@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Layout, Button, Icon } from 'antd'
-import { Link } from 'react-router-dom'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import Drawer from 'react-motion-drawer'
 
 import { isSSR } from '../../utils'

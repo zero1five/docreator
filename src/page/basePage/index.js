@@ -27,9 +27,11 @@ export default class BasePage extends PureComponent {
 
   render() {
     const {
-      page: { html }
+      page: { html, title }
     } = this.props
-
+    if (title === '404') {
+      this.props.history.push('/404')
+    }
     return <MDXRender html={html} />
   }
 }

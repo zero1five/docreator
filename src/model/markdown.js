@@ -66,6 +66,19 @@ export default {
         [home, ...config.navi],
         payload.replace(/^\//, '')
       ).replace(/([\u4e00-\u9fa5])/g, str => encodeURIComponent(str))
+
+      if (!fp) {
+        yield put({
+          type: 'setPage',
+          payload: {
+            title: '404',
+            headings: null,
+            html: ''
+          }
+        })
+        return
+      }
+
       const localPath =
         config.webpackMode === 'dev'
           ? 'http://localhost:' + config.staticServerPort + fp

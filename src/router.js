@@ -8,6 +8,7 @@ export default component => {
       <App>
         <Switch>
           <Route path="/" exact component={component['home']} />
+          <Route path="/404" exact component={component['404']} />
           <Route component={component['basePage']} />
         </Switch>
       </App>
