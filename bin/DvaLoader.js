@@ -50,10 +50,6 @@ module.exports = function(source) {
     var src = CodeMerge(appPath, wrapperModel)
     var src2 = CodeMerge(layoutPath, wrapperLayout)
 
-    if (process.env.NODE_ENV !== 'production') {
-      console.log(chalk.green('adding pages...'))
-      console.log(chalk.green('adding module...'))
-    }
     return source + '\n\n' + src + '\n' + src2
   } catch (e) {
     console.log(chalk.red('please create a module folder in `{your app}/src/`'))

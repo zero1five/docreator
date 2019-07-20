@@ -1,6 +1,5 @@
 const { resolve, join, relative } = require('path')
 const { chinese2pinyin } = require('./chinesepinyin')
-const { extractHeader } = require('./extractHeader')
 
 const fs = require('fs-extra')
 
@@ -22,7 +21,6 @@ const modulesMaker = (path, files) => {
           path: join(path, f),
           children: inside,
           type: 'dir',
-          header: dirfiles
         }
       }
 
@@ -35,8 +33,7 @@ const modulesMaker = (path, files) => {
         title: removedf,
         path: relativePath,
         children: void 666,
-        type: 'file',
-        header: extractHeader(resolve(join(path, f)))
+        type: 'file'
       }
     })
   return i

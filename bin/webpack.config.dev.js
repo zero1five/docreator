@@ -102,6 +102,7 @@ module.exports = {
       threadPool: happyThreadPool,
       verbose: false
     }),
+    new webpack.ProgressPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),

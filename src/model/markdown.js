@@ -60,8 +60,7 @@ export default {
         title: homePath,
         path: homePath[0] === '.' ? homePath.slice(1) : homePath,
         route: '/',
-        type: 'file',
-        header: []
+        type: 'file'
       }
       const fp = resolveFilePath(
         [home, ...config.navi],

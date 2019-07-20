@@ -22,7 +22,6 @@ const mergeConfig = async (external = {}) => {
   const cpNames = await fs
     .readdir(cPath)
     .then(files => {
-      console.log(files)
       return files
     })
     .catch(err => {

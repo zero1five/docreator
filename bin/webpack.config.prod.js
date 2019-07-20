@@ -40,7 +40,7 @@ module.exports = {
       {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         use: require.resolve('happypack/loader'),
-        include: paths.appSrc,
+        // include: paths.appSrc,
         exclude: /node_modules/
       },
       {
@@ -57,6 +57,13 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(jpg|png|gif|bmp|jpeg|md)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 8192
+        }
       }
     ]
   },
