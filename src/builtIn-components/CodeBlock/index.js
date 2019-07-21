@@ -9,7 +9,7 @@ export default ({ code, className = '', live }) => {
       <div style={{ marginTop: '40px' }}>
         <LiveProvider code={code}>
           <LivePreview />
-          <LiveEditor style={{ marginTop: 20 }} />
+          <LiveEditor />
           <LiveError />
         </LiveProvider>
       </div>
