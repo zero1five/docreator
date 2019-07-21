@@ -1,12 +1,19 @@
 const { resolveApp, insertStr } = require('./utils')
 
 module.exports = async source => {
-  const currPath = resolveApp('')
-  const extraStr =
-    `\n\nvar loadInCpNamesWithWabpck = fileName => require('../../builtIn-components/' + fileName).default;\n` +
-    `var loadOutCpNamesWithWabpck = (cPath, fileName) => require('${currPath}' + '/' + cPath + '/' + fileName).default;`
+  const sourcePath = resolveApp('')
+  const extraStr = `\n\n
+    var loadCpWithWabpck = (cPath, fileName) => {
+      if (!fileName) {
+        fileName = cPath;
+        cPath = null;
+
+        return require('../../builtIn-components/' + fileName).default;
+      } else {
+        return require('${sourcePath}' + '/' + cPath + '/' + fileName).default;
+      }
+    };`
 
   source = insertStr(source, source.indexOf('\n\n'), extraStr)
-
   return source
 }

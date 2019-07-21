@@ -7,11 +7,11 @@ const loadComponent = path => {
   const cp = {}
   const { in_cpNames, out_cpNames } = config
   for (let i = 0, l = in_cpNames.length; i < l; i++) {
-    cp[in_cpNames[i]] = loadInCpNamesWithWabpck(in_cpNames[i])
+    cp[in_cpNames[i]] = loadCpWithWabpck(in_cpNames[i])
   }
 
   for (let i = 0, l = out_cpNames.length; i < l; i++) {
-    cp[out_cpNames[i]] = loadOutCpNamesWithWabpck(path.slice(2), out_cpNames[i])
+    cp[out_cpNames[i]] = loadCpWithWabpck(path.slice(2), out_cpNames[i])
   }
   return cp
 }
