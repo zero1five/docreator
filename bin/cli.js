@@ -4,6 +4,7 @@ const paths = require('./paths')
 const fs = require('fs').promises
 const [mode, sourcePath, ...options] = process.argv.slice(2)
 const { getMarkdown } = require('./r')
+const { resolveApp } = require('./utils')
 const defaults = require('../config')
 
 const loadDirFileNames = cPath =>
@@ -18,9 +19,6 @@ const loadDirFileNames = cPath =>
     })
 
 const mergeConfig = async (external = {}) => {
-  const appDirectory = await fs.realpath(process.cwd())
-  const resolveApp = relativePath =>
-    path.resolve(appDirectory, sourcePath, relativePath)
   const configPath = resolveApp('doc.config.js')
   const doConfig = require(configPath)
   const docsPath = resolveApp('docs')

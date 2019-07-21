@@ -1,10 +1,10 @@
+const { resolveApp, insertStr } = require('./utils')
+
 module.exports = async source => {
-  let insertStr = (soure, start, newStr) => {
-    return soure.slice(0, start) + newStr + soure.slice(start)
-  }
+  const currPath = resolveApp('')
   const extraStr =
     `\n\nvar loadInCpNamesWithWabpck = fileName => require('../../builtIn-components/' + fileName).default;\n` +
-    `var loadOutCpNamesWithWabpck = (cPath, fileName) => require('/Users/apple/Documents/lab/docreator/website/' + cPath + '/' + fileName).default;`
+    `var loadOutCpNamesWithWabpck = (cPath, fileName) => require('${currPath}' + '/' + cPath + '/' + fileName).default;`
 
   source = insertStr(source, source.indexOf('\n\n'), extraStr)
 

@@ -97,7 +97,6 @@ module.exports = {
       threadPool: happyThreadPool,
       verbose: false
     }),
-    new webpack.ProgressPlugin(),
     new CleanWebpackPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new MiniCssExtractPlugin({
