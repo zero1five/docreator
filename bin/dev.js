@@ -85,7 +85,6 @@ const createStaticServer = (config, staticServerPort) => {
 function hydrate(page, path) {
   return new Promise((resolve, reject) => {
     let viewUrl = `${path}${decodeURIComponent(page)}`
-    console.log('request path: ', viewUrl)
     fs.readFile(viewUrl, 'utf8', (err, data) => {
       if (err) {
         reject(err)

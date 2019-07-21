@@ -1,5 +1,4 @@
-const { resolve, join, relative } = require('path')
-const { chinese2pinyin } = require('./chinesepinyin')
+const { resolve, join } = require('path')
 
 const fs = require('fs-extra')
 
@@ -16,11 +15,11 @@ const modulesMaker = (path, files) => {
         let inside = modulesMaker(join(path, f), dirfiles)
         let removedf = f.replace(/^\d+./, '')
         return {
-          route: chinese2pinyin(removedf).replace(' ', ''),
+          route: removedf,
           title: removedf,
           path: join(path, f),
           children: inside,
-          type: 'dir',
+          type: 'dir'
         }
       }
 
@@ -29,7 +28,7 @@ const modulesMaker = (path, files) => {
 
       let removedf = f.replace(/^\d+./, '').replace('.md', '')
       return {
-        route: chinese2pinyin(removedf).replace(' ', ''),
+        route: removedf,
         title: removedf,
         path: relativePath,
         children: void 666,
