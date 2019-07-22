@@ -9,14 +9,14 @@
   ],
   "keywords": [],
   "scripts": {
-    "build": "bili",
     "lint": "eslint src --fix",
     "test": "nyc ava",
     "commit": "git-cz",
     "changelog": "conventional-changelog -i CHANGELOG.md -s -r 0",
     "release": "release-it --no-git.requireCleanWorkingDir",
     "prepublishOnly": "yarn build",
-    "website": "docreator dev ./website"
+    "website": "docreator dev ./website",
+    "website:build": "docreator build ./website"
   },
   "repository": {
     "url": "zero1five/docreator",

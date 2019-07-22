@@ -44,13 +44,27 @@ const createBuildWorkder = config => {
     }
 
     copyPublicFolder(config)
+
+    if (config.homePage === './README.md') {
+      copyeReadmeMD(config)
+    }
   })
 }
 
 function copyPublicFolder(config) {
   fs.copy(
-    path.resolve(config.sourcePath),
+    path.join(config.directoryPath, config.sourcePath),
     path.resolve('dist', config.sourcePath),
+    err => {
+      if (err) throw err
+    }
+  )
+}
+
+function copyeReadmeMD(config) {
+  fs.copyFile(
+    path.join(config.directoryPath, config.homePage),
+    path.resolve('dist', config.homePage),
     err => {
       if (err) throw err
     }
