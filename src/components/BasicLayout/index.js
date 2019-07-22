@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Layout, Button, Icon } from 'antd'
+import { decode } from '../../utils'
 import { Link, withRouter } from 'react-router-dom'
 import Drawer from 'react-motion-drawer'
 
@@ -50,6 +51,30 @@ export default class App extends PureComponent {
     })
   }
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.windowScrollToLink()
+    }, 700)
+  }
+
+  componentDidUpdate() {
+    this.windowScrollToLink()
+  }
+
+  windowScrollToLink() {
+    const { HeaderHeight } = this.state
+    const {
+      location: { hash }
+    } = this.props
+
+    if (hash) {
+      let anchorElement = document.querySelector(`#${decode(hash.slice(1))}`)
+      if (anchorElement) {
+        window.scrollTo(0, anchorElement.offsetTop - HeaderHeight - 20)
+      }
+    }
+  }
+
   componentWillUnmount() {
     isSSR(win => {
       win.removeEventListener('resize', this.resize)
@@ -95,6 +120,7 @@ export default class App extends PureComponent {
       SiderWidth: this.state.collapsed ? 200 : 0
     })
   }
+
   siderClose = () => {
     this.setState({
       collapsed: true,
@@ -175,6 +201,7 @@ export default class App extends PureComponent {
 
   render() {
     const { screenMode, navi, footer } = this.state
+
     return (
       <div className="basic-container">
         <Layout>
