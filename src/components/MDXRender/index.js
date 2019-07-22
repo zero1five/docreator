@@ -1,18 +1,27 @@
 import React, { PureComponent } from 'react'
 import MDX from '@mdx-js/runtime'
+import slug from 'rehype-slug'
+import link from 'rehype-autolink-headings'
 
 import config from '../../globalConfig'
 
 const loadComponent = path => {
   const cp = {}
   const { in_cpNames, out_cpNames } = config
-  for (let i = 0, l = in_cpNames.length; i < l; i++) {
-    cp[in_cpNames[i]] = loadCpWithWabpck(in_cpNames[i])
+  const assignCpNames = (source, target, prefix) => {
+    for (let i = 0, l = source.length; i < l; i++) {
+      const curr = source[i]
+      if (prefix) {
+        target[curr] = loadCpWithWabpck(path.slice(2), curr)
+      } else {
+        target[curr] = loadCpWithWabpck(curr)
+      }
+    }
   }
 
-  for (let i = 0, l = out_cpNames.length; i < l; i++) {
-    cp[out_cpNames[i]] = loadCpWithWabpck(path.slice(2), out_cpNames[i])
-  }
+  assignCpNames(in_cpNames, cp)
+  assignCpNames(out_cpNames, cp, path.slice(2))
+
   return cp
 }
 
@@ -25,7 +34,7 @@ export default class MDXRender extends PureComponent {
       <MDX
         components={components}
         remarkPlugins={[]}
-        rehypePlugins={[]}
+        rehypePlugins={[slug, [link, { behavior: 'wrap' }]]}
         children={html}
       />
     )
