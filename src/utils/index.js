@@ -10,19 +10,16 @@ export const isSSR = fn => {
 
 export const decode = str => {
   return decodeURIComponent(str)
+    .replace(/[^\dA-Za-z\u3007\u4E00-\u9FCB\uE815-\uE864]/g, '')
     .split('')
     .reverse()
     .join('')
 }
 
 export const encode = str => {
-  console.log(str
-    .toString()
-    .split('')
-    .reverse()
-    .join(''))
   return str
     .toString()
+    .replace(/[^\dA-Za-z\u3007\u4E00-\u9FCB\uE815-\uE864]/g, '')
     .split('')
     .reverse()
     .join('')
