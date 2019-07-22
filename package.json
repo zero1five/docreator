@@ -9,7 +9,7 @@
   ],
   "keywords": [],
   "scripts": {
-    "lint": "eslint src --fix",
+    "lint": "eslint bin --fix",
     "test": "nyc ava",
     "commit": "git-cz",
     "changelog": "conventional-changelog -i CHANGELOG.md -s -r 0",
@@ -69,6 +69,7 @@
     "title": "^3.4.1",
     "url-loader": "^2.1.0",
     "webpack": "^4.35.0",
+    "webpack-chain": "^6.0.0",
     "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.7.2"
   },

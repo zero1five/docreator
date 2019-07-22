@@ -14,7 +14,11 @@ module.exports = {
   },
   output: {
     pathinfo: true,
-    filename: '[name].[chunkhash:6].bundle.js',
+    filename: 'assets/js/[name].[chunkhash:6].bundle.js',
+    chunkFilename: 'chunk/[name].[chunkhash:6].bundle.js',
+    library: 'library',
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
     publicPath: './',
     path: path.resolve('dist')
   },
@@ -51,7 +55,13 @@ module.exports = {
         test: /\.less$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // you can specify a publicPath here
+              // by default it uses publicPath in webpackOptions.output
+              publicPath: '../',
+              hmr: process.env.NODE_ENV === 'development'
+            }
           },
           'css-loader',
           {
@@ -105,7 +115,23 @@ module.exports = {
     new CleanWebpackPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'css/style.css'
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+      ignoreOrder: false
     })
-  ]
+  ],
+  optimization: {
+    runtimeChunk: {
+      name: 'manifest'
+    },
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all'
+        }
+      }
+    }
+  }
 }
